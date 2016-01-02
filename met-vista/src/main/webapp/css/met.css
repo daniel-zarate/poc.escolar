@@ -1,0 +1,189 @@
+.tablaRigth {
+	position: relative;
+	float: right;
+	border: solid 0px #dddddd;
+}
+
+.tablaCentrada {
+	position: relative;
+	float: none;
+	width: 100%;
+	border-style: none;
+}
+
+.divCentrado {
+	position: relative;
+	float: none;
+	width: 100%;
+	padding: 1.5rem 8.0rem 0rem;
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 1em 0em;
+}
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td
+		{
+		padding: 0.5rem 0.4rem 0.225rem;
+		font-size: 0.566rem;
+		font-weight: bold;
+		color: #222222;
+		text-align: left;
+	}
+	table tr th,table tr td {
+		padding: 0rem 0rem;
+		font-size: 0.566rem;
+		color: #222222;
+	}
+	.sep-font {
+		font-family: Arial !important;
+		font-size: 10px !important;
+	}
+	label.right {
+		float: none;
+		text-align: right;
+	}
+	label.inline {
+		margin: 0 0 0.566rem 0;
+		padding: 0.566rem 0;
+	}
+	button,.button {
+		font-size: 11px !important;
+	}
+	input[type="text"],input[type="password"],input[type="date"],input[type="datetime"],input[type="datetime-local"],input[type="month"],input[type="week"],input[type="email"],input[type="number"],input[type="search"],input[type="tel"],input[type="time"],input[type="url"],textarea
+		{
+		font-size: 0.566rem;
+		height: 0rem;
+	}
+	.pull-2 {
+		position: relative;
+		right: 3%;
+		left: auto;
+	}
+	.large-9 {
+		position: relative;
+		width: 70%;
+	}
+	label {
+		font-size: 0.566rem;
+	}
+	fieldset legend {
+		font-size: 0.667rem;
+	}
+	/*Se agregaron para met*/
+	.ui-widget {
+		font-size: 11px;
+	}
+	fieldset {
+		padding: 0rem;
+	}
+	.sep-fieldset {
+		margin: 0 0 0 0;
+	}
+
+	/* Estilo para cajas de texto*/
+	.sep-text-medium {
+		font-size: 0.566rem;
+	}
+	
+	select {
+		font-size: 0.566rem;
+	}
+	
+	.metFile{
+		font-family: Arial !important;
+		font-size: 10px !important;
+	}
+	
+	.imgDocumento{
+        width:35px;
+        height:35px;	
+	}
+	
+	.accordion dd>a {
+		font-size: 0.8rem;
+	}
+	
+	ul,ol,dl {
+        font-size: 0.566rem;
+	}
+}
+
+
+/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+	table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td
+		{
+		padding: 0.5rem 0.49rem 0.225rem;
+		font-size: 0.680rem;
+		font-weight: bold;
+		color: #222222;
+		text-align: left;
+	}
+	table tr th,table tr td {
+		padding: 0.5rem 0.5rem;
+		font-size: 0.8rem;
+		color: #222222;
+	}
+	.sep-font {
+		font-family: Arial !important;
+		font-size: 15px !important;
+	}
+	label.right {
+		float: none;
+		text-align: right;
+	}
+	label.inline {
+		margin: 0 0 0.70rem 0;
+		padding: 0.70rem 0;
+	}
+	button,.button {
+		font-size: 15px !important;
+	}
+	input[type="text"],input[type="password"],input[type="date"],input[type="datetime"],input[type="datetime-local"],input[type="month"],input[type="week"],input[type="email"],input[type="number"],input[type="search"],input[type="tel"],input[type="time"],input[type="url"],textarea
+		{
+		font-size: 0.80rem;
+		height: 0rem;
+	}
+	.pull-2 {
+		position: relative;
+		right: 3%;
+		left: auto;
+	}
+	.large-9 {
+		position: relative;
+		width: 70%;
+	}
+	label {
+		font-size: 0.90rem;
+	}
+	fieldset legend {
+		font-size: 0.90rem;
+	}
+	
+	.divCentrado {
+		position: relative;
+		float: none;
+		width: 100%;
+		padding: 1.5rem 1.0rem 0rem;
+	}
+	
+	select {
+		font-size: 0.90rem;
+	}
+	
+	.metFile{
+		font-family: Arial !important;
+		font-size: 15px !important;
+	}
+	
+	.imgDocumento{
+        width:50px;
+        height:50px;	
+	}
+	ul,ol,dl {
+        font-size: 0.9rem;
+	}
+}
