@@ -22,6 +22,7 @@
         <openL.version>5.16.3</openL.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <groovy.version>2.4.5</groovy.version>
+        <gmavenplus.version>1.5</gmavenplus.version>
     </properties>
     <repositories>
         <repository>
@@ -130,7 +131,7 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.5</version>
+                <version>${gmavenplus.version}</version>
                 <executions>
                     <execution>
                         <goals>
