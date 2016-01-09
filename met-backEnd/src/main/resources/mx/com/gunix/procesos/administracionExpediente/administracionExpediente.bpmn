@@ -7,7 +7,9 @@
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="CargaInicial"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="CargaInicial" targetRef="PantallaInicial"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
-    <sequenceFlow id="flow3" sourceRef="PantallaInicial" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="PantallaInicial" targetRef="GuardaExpediente"></sequenceFlow>
+    <serviceTask id="GuardaExpediente" name="GuardaExpediente" activiti:expression="${guardaExpediente.execute(expediente)}" activiti:resultVariableName="resultGuardaExpediente"></serviceTask>
+    <sequenceFlow id="flow4" sourceRef="GuardaExpediente" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_administracionExpediente">
     <bpmndi:BPMNPlane bpmnElement="administracionExpediente" id="BPMNPlane_administracionExpediente">
@@ -21,7 +23,10 @@
         <omgdc:Bounds height="55.0" width="105.0" x="500.0" y="150.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35.0" width="35.0" x="700.0" y="160.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="820.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="GuardaExpediente" id="BPMNShape_GuardaExpediente">
+        <omgdc:Bounds height="55.0" width="105.0" x="650.0" y="150.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="265.0" y="177.0"></omgdi:waypoint>
@@ -33,7 +38,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
         <omgdi:waypoint x="605.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="700.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="755.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="820.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
