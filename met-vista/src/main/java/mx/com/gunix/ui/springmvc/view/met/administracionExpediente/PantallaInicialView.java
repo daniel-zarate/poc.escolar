@@ -13,17 +13,21 @@ import mx.com.gunix.framework.ui.springmvc.spring.GunixSpringMVCView;
 
 import org.springframework.ui.Model;
 
-@GunixSpringMVCView("pantallaInicial")
+@GunixSpringMVCView("Expediente")
 public class PantallaInicialView extends AbstractGunixController<Expediente> {
 
 	 	@Override
 	 	protected String doConstruct(Model uiModel) {
+	 		System.out.println("doConstruct");
 	 		return "met.administracionExpediente.PantallaInicial";
 	 	}
 	 
 	 	@Override
 	 	protected List<Variable<?>> getVariablesTarea(HttpServletRequest request) {
 	 		
+	 		System.out.println("getVariablesTarea");
+	 		
+	 		System.out.println("attributes");
 	 		Enumeration< String > en =  request.getAttributeNames();
 	 		
 	 		while(en.hasMoreElements()){
@@ -34,10 +38,23 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 	 			System.out.println("valor: " + o);
 	 			
 	 		}
+	
+	 		System.out.println("parameters");
+	 		en = request.getParameterNames();
+	 		
+	 		while(en.hasMoreElements()){
+	 			
+	 			String name = en.nextElement();
+	 			System.out.println("propiedad: " + name);
+	 			Object o = request.getParameter(name);
+	 			System.out.println("valor: " + o);
+	 			
+	 		}
 	 		
 	 		
 	 		
 	 		Expediente e = new Expediente();
+	 		e.setNombre(request.getParameter("nombre"));
 	 		
 	 		List<Variable<?>> vars = new ArrayList<Variable<?>>();
 	 		Variable<Expediente> expedienteVar = new Variable<Expediente>();
@@ -49,11 +66,13 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 	 
 	 	@Override
 	 	protected String getComentarioTarea(HttpServletRequest request) {
+	 		System.out.println("getComentarioTarea");
 	 		return null;
 	 	}
 	 
 	 	@Override
 	 	protected String doEnter(HttpServletRequest request) {
+	 		System.out.println("doEnter");
 	 		return null;
 	 	}
 	
