@@ -1,4 +1,4 @@
-package mx.com.gunix.service.met.administracionExpediente;
+package mx.com.gunix.service.met.administracionexpediente;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +11,9 @@ import mx.com.gunix.framework.processes.domain.Variable;
 @Service("guardaExpediente")
 public class GuardaExpediente {
 
-	public String execute(Variable<Expediente> exp){
+	public String execute(Expediente expediente){
 		
-		System.out.println("objeto expediente:" + exp.getNombre());
+		System.out.println("objeto expediente:" + expediente.getNombre());
 		
 		return "OK";
 	} 

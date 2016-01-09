@@ -1,4 +1,4 @@
-package mx.com.gunix.service.met.administracionExpediente;
+package mx.com.gunix.service.met.administracionexpediente;
 
 import java.util.HashMap;
 import java.util.Map;
