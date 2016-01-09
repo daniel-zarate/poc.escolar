@@ -1,3 +1,6 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="gunix" uri="/framework/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +9,10 @@
 <link rel="stylesheet" href="/met-vista/static/css/css.css" /> 
 <script src="/met-vista/static/js/vendor/modernizr.js"></script> 
     	
-<script src="/met-vista/js/prototype/prototype.js" type="text/javascript"></script>		
-<link rel="stylesheet" href="/met-vista/css/jquery-ui/smoothness/jquery-ui-1.10.4.custom.css" />
-<script src="/met-vista/js/jquery-ui/jquery-ui-1.10.4.custom.js"></script>
-<script src="/met-vista/js/jquery-ui/jquery.ui.datepicker-es.js"></script>
+<!-- <script src="/met-vista/static/js/prototype/prototype.js" type="text/javascript"></script>		 -->
+<link rel="stylesheet" href="/met-vista/static/css/jquery-ui/smoothness/jquery-ui-1.10.4.custom.css" />
+<script src="/met-vista/static/js/jquery-ui/jquery-ui-1.10.4.custom.js"></script>
+<script src="/met-vista/static/js/jquery-ui/jquery.ui.datepicker-es.js"></script>
 <script src="/met-vista/static/js/foundation.min.js"></script>
 
 <script src="/met-vista/js/jlayout/jquery.layout-latest.js" type="text/javascript"></script>
@@ -134,7 +137,7 @@
 					<%--			</fieldset>--%>
 				</div>
 			</div>
-			
+			<form:form method="POST" commandName="Expediente"> 
 			<div class="ui-layout-center">
 				<div id="tabs">
 					<ul>
@@ -147,52 +150,100 @@
 					</ul>
 					<div class="tabs-content">
 						<div class="content large-12 columns active" id="panelDatosPersonales">
-							PantallaInicialDatosPersonales.gsp
-
+<%-- 							PantallaInicialDatosPersonales.gsp - 2 ${spring.message("propiedad.valor")} - <spring:message code="propiedad.valor" /> --%>
+								<jsp:include page="PantallaInicialDatosPersonales.jsp" ></jsp:include>
 						</div>
 						<div class="content large-12 columns" id="panelDatosGenerales">
 							<p>
-								PantallaInicialDatosGenerales.gsp
+								<jsp:include page="PantallaInicialDatosGenerales.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelEsquemaPago">
 							<p>
-								PantallaInicialEsquemaPago.gsp
+								<jsp:include page="PantallaInicialEsquemaPago.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelTrayectoriaLaboral">
 							<p>
-								PantallaInicialTrayectoriaLaboral.gsp
+								<jsp:include page="PantallaInicialTrayectoriaLaboral.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelFormacionAcademica">
 							<p>
-								PantallaInicialFormacionAcademica.gsp
+								<jsp:include page="PantallaInicialFormacionAcademica.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelDependientesFamiliares">
 							<p>
-								PantallaInicialDependientesFamiliares.jsp
+								<jsp:include page="PantallaInicialDependientesFamiliares.jsp" ></jsp:include>
 							</p>
 						</div>
 					</div>
-
-
 				</div>
 
 			</div>
 
 			<div class="ui-layout-south">
-<%-- 				<jsp:include page="PantallaInicialSeguimiento.jsp" > --%>
-					PantallaInicialSeguimiento.jsp
+					<jsp:include page="PantallaInicialSeguimiento.jsp" ></jsp:include>
+					<gunix:completeTask label="Guardar" ></gunix:completeTask>		
 			</div>
 			<div class="ui-layout-east">
 				<iframe name="documentosExpedienteIFrame" width="100%" height="100%"></iframe>
 			</div>
 			
+			</form:form>
 		
 		</div>
 	
+		<script type="text/javascript">
+		
+		$(document).ready(function(){
+			
+
+			$('#containerTest').attr("style", " width: 1663px; height: 800px; " + $('#containerTest').attr("style"));
+			var layout = $('#containerTest').layout({ applyDefaultStyles: true,
+				onopen: function () {							
+					if(!layout.state.east.isClosed)
+			        	$(layout.east.toggler).css('background-position', '100% 0%');
+		            if(!layout.state.south.isClosed)
+			            $(layout.south.toggler).css('background-position', '0% 100%');
+		            if(!layout.state.north.isClosed)
+			            $(layout.north.toggler).css('background-position', '100% 0%');
+		        },
+		        onclose: function () {
+    	           	if(layout.state.east.isClosed)
+	                    $(layout.east.toggler).css('background-position', '0% 100%');
+    	           	if(layout.state.south.isClosed)
+		        	    $(layout.south.toggler).css('background-position', '100% 0%');
+    	           	if(layout.state.north.isClosed)
+		            	$(layout.north.toggler).css('background-position', '0% 100%');
+		        }
+
+			});
+
+			layout.sizePane("east", '35%');
+	        $(layout.east.toggler).css('background-image', 'url( /met-vista/images/leftright.png )');
+	        $(layout.east.toggler).css('background-position', '100% 0%');              
+	        $(layout.north.toggler).css('background-image', 'url( /met-vista/images/topbottom.png )');
+	        $(layout.south.toggler).css('background-position', '100% 0%');
+	        $(layout.south.toggler).css('background-image', 'url( /met-vista/images/topbottom.png )');        
+	        $(layout.south.toggler).css('background-position', '0% 100%');
+			
+			$("#tabs").tabs(); 
+
+			$(window).resize(function(){
+				$('#containerTest').width($(window).width());
+				$('#containerTest').height($(window).height()-195);
+			});
+			
+			$(window).trigger("resize");
+			//se forza el z-index a -1 para mandarlo al fondo
+			$(".ui-layout-east").css("z-index",-1);
+		})
+		
+		
+		</script>
+		
 	</body >
 </html>
 
