@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mx.com.gunix.domain.met.administracionExpediente.Expediente;
+import mx.com.gunix.domain.met.administracionexpediente.Expediente;
 import mx.com.gunix.framework.processes.domain.Variable;
 import mx.com.gunix.framework.ui.springmvc.AbstractGunixController;
 import mx.com.gunix.framework.ui.springmvc.spring.GunixSpringMVCView;

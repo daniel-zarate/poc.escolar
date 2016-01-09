@@ -1,4 +1,4 @@
-package mx.com.gunix.domain.met.administracionExpediente;
+package mx.com.gunix.domain.met.administracionexpediente;
 
 import java.io.Serializable;
 
