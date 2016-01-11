@@ -9,4 +9,6 @@ import groovy.transform.Canonical
 class EsquemaPago implements Serializable{
 
     boolean bancarizado
+    String cveBanco
+    String clabe
 }

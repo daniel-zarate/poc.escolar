@@ -10,7 +10,7 @@ class DatosGenerales implements Serializable{
 
     String telefonoCelular
     String correoElectronicoPersonal
-
+    Domicilio domicilio
 
 
 }

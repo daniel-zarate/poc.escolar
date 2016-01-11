@@ -19,5 +19,7 @@ class DatosPersonales implements Serializable{
     Catalogo estadoCivil
     Catalogo nacionalidad
     Catalogo paisNacimiento
+    Catalogo entidadFederativa
+    Catalogo municipiodelegacion
 
 }
