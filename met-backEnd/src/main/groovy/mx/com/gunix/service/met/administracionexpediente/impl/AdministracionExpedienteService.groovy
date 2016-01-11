@@ -76,8 +76,8 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
             telefonoCelular = expediente.celular
             correoElectronicoPersonal = expediente.email
             domicilio.with {
-                calleNumero
-                codigoPostal
+                calleNumero = expediente.calle
+                codigoPostal = expediente.codPosta
                 colonia = new Catalogo(id: expediente.colonia.toInteger())
                 entidad = new Catalogo(id: expediente.entidad.toInteger())
                 municipio = new Catalogo(id: expediente.municipio.toInteger())
