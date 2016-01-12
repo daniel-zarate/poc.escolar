@@ -37,8 +37,7 @@
 
 		<div id="erroresGlobales" class="large-12 columns">
 			<!-- Leer errores -->
-			
-			<div id="showError" class="error"></div>
+<!-- 			<div id="showError" class="error"></div> -->
 		</div>
 	
 		<div id="containerTest">
@@ -137,7 +136,7 @@
 					<%--			</fieldset>--%>
 				</div>
 			</div>
-			<form:form method="POST" commandName="Expediente"> 
+			<form:form method="POST" commandName="Expediente" data-abide="ajax" id="foundationForm" > 
 			<div class="ui-layout-center">
 				<div id="tabs">
 					<ul>
@@ -198,7 +197,6 @@
 		<script type="text/javascript">
 		
 		$(document).ready(function(){
-			
 
 			$('#containerTest').attr("style", " width: 1663px; height: 800px; " + $('#containerTest').attr("style"));
 			var layout = $('#containerTest').layout({ applyDefaultStyles: true,
@@ -239,6 +237,10 @@
 			$(window).trigger("resize");
 			//se forza el z-index a -1 para mandarlo al fondo
 			$(".ui-layout-east").css("z-index",-1);
+			
+			console.log("ejecutando foundation al final")
+			$(document).foundation();
+			
 		})
 		
 		
