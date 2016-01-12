@@ -13,6 +13,13 @@
 			var operacion = ""
 			var municipioRequerido = ""
 			var valorFechaNacimiento = ""	
+			
+			$(document).ready(function(){
+				console.log("llamando a foundation");
+				$(document).foundation();
+				
+			});
+			
 		</script>
 <%-- <link rel="stylesheet" href="${resource(dir: 'css/noty', file: 'noty.css',plugin:'in-sane-fwk')}" /> --%>
 <%-- <script src="${resource(dir: 'js/api', file: 'RestClientURI.js',plugin:'in-sane-fwk')}" type="text/javascript"></script> --%>
@@ -23,8 +30,7 @@
 
 	<div id="showError" class="error"></div>
 	<input type="hidden" name="documentacion" id ="documentacion" value="" />
-	<input type="hidden" name="operation" id ="operation" 
-		value="${idOperacion}" />	
+	<input type="hidden" name="operation" id ="operation" value="${idOperacion}" />	
 	<div class="small-12 columns">
 		<div class="row">
 			<!-- -------------- Primer Apellido -------------- -->
