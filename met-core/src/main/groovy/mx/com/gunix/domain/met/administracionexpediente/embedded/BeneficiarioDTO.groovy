@@ -1,8 +1,6 @@
 package mx.com.gunix.domain.met.administracionexpediente.embedded
 
-/**
- * Created by Daniel on 05/01/2016.
- */
+
 class BeneficiarioDTO {
 
     String primerApellido

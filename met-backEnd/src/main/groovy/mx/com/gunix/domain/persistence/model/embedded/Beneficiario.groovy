@@ -1,8 +1,5 @@
 package mx.com.gunix.domain.persistence.model.embedded
 
-/**
- * Created by Daniel on 05/01/2016.
- */
 class Beneficiario {
 
     String primerApellido

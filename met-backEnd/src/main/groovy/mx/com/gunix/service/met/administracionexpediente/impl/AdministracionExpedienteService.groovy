@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service
 import javax.annotation.Resource
 import java.text.SimpleDateFormat
 
-/**
- * Created by Daniel on 07/01/2016.
- */
+
 @Service
 class AdministracionExpedienteService implements IAdministracionExpedienteService{
 

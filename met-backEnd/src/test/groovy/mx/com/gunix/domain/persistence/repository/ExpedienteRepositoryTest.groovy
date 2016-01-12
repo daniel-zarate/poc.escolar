@@ -10,9 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
 import javax.annotation.Resource
 
-/**
- * Created by Daniel on 06/01/2016.
- */
 @RunWith(SpringJUnit4ClassRunner)
 @ContextConfiguration(classes = [MongoDBConfig])
 class ExpedienteRepositoryTest {
