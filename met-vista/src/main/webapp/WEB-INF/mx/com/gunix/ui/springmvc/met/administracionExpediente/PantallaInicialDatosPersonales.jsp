@@ -197,7 +197,7 @@
 					<select	id="municipioComboDatosPersonales" 
 							name="cveMunicipio"	
 					 		class="sep-text-medium left" >
-							<option value="Cuauhtemoc">  </option>
+							<option value="0">Cuauhtemoc</option>
 					</select> 
 					<small class="error"><spring:message code="administracionExpediente.v1.view.label.datosPersonales.municipioDelegacion.requerido" />
 					</small>

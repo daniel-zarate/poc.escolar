@@ -26,36 +26,33 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 	 	protected List<Variable<?>> getVariablesTarea(HttpServletRequest request) {
 	 		
 	 		System.out.println("getVariablesTarea");
+	 		Enumeration< String > en =  request.getAttributeNames();	 		
 	 		
-	 		System.out.println("attributes");
-	 		Enumeration< String > en =  request.getAttributeNames();
-	 		
-	 		while(en.hasMoreElements()){
-	 			
-	 			String name = en.nextElement();
-	 			System.out.println("propiedad: " + name);
-	 			Object o = request.getAttribute(name);
-	 			System.out.println("valor: " + o);
-	 			
-	 		}
+//	 		System.out.println("attributes");
+//	 		while(en.hasMoreElements()){
+//	 			
+//	 			String name = en.nextElement();
+//	 			System.out.println("propiedad: " + name);
+//	 			Object o = request.getAttribute(name);
+//	 			System.out.println("valor: " + o);
+//	 			
+//	 		}
 	
 	 		System.out.println("parameters");
 	 		en = request.getParameterNames();
 	 		
+	 		Expediente e = new Expediente();
+	 		
 	 		while(en.hasMoreElements()){
-	 			
 	 			String name = en.nextElement();
-	 			System.out.println("propiedad: " + name);
-	 			Object o = request.getParameter(name);
-	 			System.out.println("valor: " + o);
+	 			//System.out.println("propiedad: " + name);
+	 			e."${name}" = request.getParameter(name);
+	 			//System.out.println("valor: " + e."${name}");
 	 			
 	 		}
 	 		
-	 		
-	 		
-	 		Expediente e = new Expediente();
-	 		e.setNombre(request.getParameter("nombre"));
-	 		
+			 System.out.println("Expediente: " + e?.dump());
+			 
 	 		List<Variable<?>> vars = new ArrayList<Variable<?>>();
 	 		Variable<Expediente> expedienteVar = new Variable<Expediente>();
 	 		expedienteVar.setNombre("expediente");

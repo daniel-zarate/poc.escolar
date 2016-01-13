@@ -104,7 +104,7 @@
 					</div>
 					<div class="medium-4 columns">
 						<select id="coloniaCombo" name="colonia" class="sep-text-medium left" value="${colonia}"  >
-							<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option>
+							<option value="0">Centro</option>
 						</select>
 						<small class="error">
 							<spring:message code="ER-044008"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.colonia" />' />
@@ -112,7 +112,8 @@
 					</div>
 					<div class="medium-4 columns">
 						<select id="entidadCombo" name="entidad" class="sep-text-medium left" value="${entidad}" >
-							<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option>
+<%-- 							<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option> --%>
+							<option value="0">DF</option>
 						</select>
 						<small class="error">
 							<spring:message code="ER-044008" arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.entidad" />' />
@@ -142,7 +143,8 @@
 					<div class=center>
 				<div class="medium-4 columns">
 						<select id="municipioCombo" name="municipio" class="sep-text-medium left" value="${municipio}" >
-							<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option>
+<%-- 							<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option> --%>
+							<option value="0">Cuauhtemoc</option>
 						</select>
 						<small class="error">
 							<spring:message code="ER-044008"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.municipio" />' />

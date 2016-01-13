@@ -17,11 +17,11 @@
         <module>met-backEnd</module>
     </modules>
     <properties>
-        <javac.path>C:\Program Files\Java\jdk1.8.0_31/bin/javac</javac.path>
+        <javac.path>/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/bin/javac</javac.path>
         <activiti.version>5.19.0</activiti.version>
         <openL.version>5.16.3</openL.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <groovy.version>2.4.5</groovy.version>
+        <groovy.version>2.3.7</groovy.version>
         <gmavenplus.version>1.5</gmavenplus.version>
     </properties>
     <repositories>
@@ -104,16 +104,43 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>${gmavenplus.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.1</version>
                 <configuration>
                     <verbose>true</verbose>
                     <fork>true</fork>
                     <executable>${javac.path}</executable>
                     <source>1.8</source>
                     <target>1.8</target>
+<!--                     <compilerId>groovy-eclipse-compiler</compilerId> -->
                 </configuration>
+<!--                 <dependencies> -->
+<!-- 		          <dependency> -->
+<!-- 		            <groupId>org.codehaus.groovy</groupId> -->
+<!-- 		            <artifactId>groovy-eclipse-compiler</artifactId> -->
+<!-- 		            <version>2.9.1-01</version> -->
+<!-- 		          </dependency> -->
+<!-- 		          for 2.8.0-01 and later you must have an explicit dependency on groovy-eclipse-batch -->
+<!-- 		          <dependency> -->
+<!-- 		            <groupId>org.codehaus.groovy</groupId> -->
+<!-- 		            <artifactId>groovy-eclipse-batch</artifactId> -->
+<!-- 		            <version>2.3.7-01</version> -->
+<!-- 		          </dependency> -->
+<!-- 		        </dependencies> -->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -127,19 +154,6 @@
                         </file>
                     </additionalConfig>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>${gmavenplus.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

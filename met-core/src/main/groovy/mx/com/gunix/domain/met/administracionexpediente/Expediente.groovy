@@ -89,4 +89,9 @@ class Expediente implements Serializable {
     String parentescoDependientesFamiliares
     String nivelDependientesFamiliares
     String gradoDependientesFamiliares
+	String tipoAntiguedad
+	String tipoRama
+	String tipoPeriodo
+	
+	
 }

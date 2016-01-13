@@ -53,7 +53,7 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
             curp = expediente.curp
             rfc = expediente.rfc
             fechaNacimiento = formatter.parse(expediente.fechaNacimiento)
-            edad = expediente.edadTrabajador.toInteger()
+            edad = expediente?.edadTrabajador?.toInteger()
             int idGenero = expediente.cveSexo ? expediente.cveSexo.toInteger() : -1
             genero = new Catalogo(id: idGenero)
             int idEstadoCivil = expediente.cveEstadoCivil ? expediente.cveEstadoCivil.toInteger() : -1
@@ -76,9 +76,9 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
             domicilio.with {
                 calleNumero = expediente.calle
                 codigoPostal = expediente.codPosta
-                colonia = new Catalogo(id: expediente.colonia.toInteger())
-                entidad = new Catalogo(id: expediente.entidad.toInteger())
-                municipio = new Catalogo(id: expediente.municipio.toInteger())
+                colonia = new Catalogo(id: expediente?.colonia?.toInteger())
+                entidad = new Catalogo(id: expediente?.entidad?.toInteger())
+                municipio = new Catalogo(id: expediente?.municipio?.toInteger())
                 localidad = expediente.localidad
                 telfonoFijo = expediente.telefono
                 observaciones = expediente.observaciones
