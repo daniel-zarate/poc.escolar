@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,7 +18,9 @@
 			$(document).ready(function(){
 				console.log("llamando a foundation");
 				$(document).foundation();
-				
+				Foundation.libs.abide.validate($( ":input" ), {type:''})
+				console.log("llamando a abide");
+				//$(document).trigger('validate.fndtn.abide');
 			});
 			
 		</script>
@@ -44,7 +47,8 @@
 			<!-- -------------- Segundo Apellido -------------- -->
 			<div class="small-4 columns">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.segundoApellido"  /></label> 
-				<input name="apellidoMaterno" id="apellidoMaterno" type="text" class="sep-text-medium" placeholder="" value="${apellidoMaterno}" maxlength="50" /> 
+<%-- 				<input name="apellidoMaterno" id="apellidoMaterno" type="text" class="sep-text-medium" placeholder="" value="${apellidoMaterno}" maxlength="50" />  --%>
+				<form:input path="apellidoMaterno" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" />
 				<small class="error">
 					<spring:message code="administracionExpediente.v1.view.label.datosPersonales.segundoApellido.requerido" />
 				</small>
@@ -55,11 +59,27 @@
 					<spring:message code="administracionExpediente.v1.view.label.datosPersonales.nombre"  />
 					<font color="red">*</font>
 				</label> 
-				<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium"  />
+				<c:set var="nombreError"><form:errors path="nombre"/></c:set>
+				<c:if test="${not empty nombreError}">
+					con error u.u
+					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" data-invalid="data-invalid" />
+				</c:if>
+				<c:if test="${empty nombreError}">
+					sin error
+					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" />
+				</c:if>
+				
 <%-- 				<input name="nombre" id="nombre" type="text" class="sep-text-medium" placeholder="" required  value="${nombre}" maxlength="50" />  --%>
 				<small class="error">
 					<spring:message code="administracionExpediente.v1.view.label.datosPersonales.nombre.requerido" />
 				</small>
+<%-- 				<c:set var="expedienteErrors"><form:errors path="name"/></c:set> --%>
+<%-- 				<form:errors path="nombre" element="div" /> --%>
+<%-- 					<spring:bind path="nombre"> --%>
+<%-- 					  <c:if test="${status.error}"> --%>
+<%-- 					    <spring:message code="administracionExpediente.v1.view.label.datosPersonales.nombre.requerido" /> --%>
+<%-- 					  </c:if> --%>
+<%-- 					</spring:bind> --%>
 			</div>
 			<!-- ------------------------------------------------ -->
 		</div>

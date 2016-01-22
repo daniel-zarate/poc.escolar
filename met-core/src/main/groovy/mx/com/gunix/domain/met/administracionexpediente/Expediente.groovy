@@ -1,6 +1,8 @@
 package mx.com.gunix.domain.met.administracionexpediente
 
 import groovy.transform.Canonical
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 @Canonical
 class Expediente implements Serializable {
@@ -18,7 +20,11 @@ class Expediente implements Serializable {
     /*Datos Personales*/
     String apellidoPaterno
     String apellidoMaterno
+	
+	@NotNull
+	@Size(min=1)
     String nombre
+	
     String curp
     String rfc
     String fechaNacimiento

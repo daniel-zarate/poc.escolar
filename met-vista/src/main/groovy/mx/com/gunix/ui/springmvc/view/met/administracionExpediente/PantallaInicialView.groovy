@@ -11,11 +11,17 @@ import mx.com.gunix.framework.processes.domain.Variable;
 import mx.com.gunix.framework.ui.springmvc.AbstractGunixController;
 import mx.com.gunix.framework.ui.springmvc.spring.GunixSpringMVCView;
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.ui.Model;
+import org.springframework.validation.Validator
+import org.springframework.validation.Errors
 
 @GunixSpringMVCView("Expediente")
 public class PantallaInicialView extends AbstractGunixController<Expediente> {
 
+	@Autowired
+	Validator validator;
+	
 	 	@Override
 	 	protected String doConstruct(Model uiModel) {
 	 		System.out.println("doConstruct");
@@ -52,6 +58,16 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 	 		}
 	 		
 			 System.out.println("Expediente: " + e?.dump());
+			 
+			 Errors errors = null;
+			 println "validador - ${validator?.dump()}"
+			 validator.validate(e, errors)
+			 
+			 println "errors - ${errors?.dump()}" 
+			 
+			 if(errors.hasErrors()){
+				 println "si hubo errores"
+			 }
 			 
 	 		List<Variable<?>> vars = new ArrayList<Variable<?>>();
 	 		Variable<Expediente> expedienteVar = new Variable<Expediente>();
