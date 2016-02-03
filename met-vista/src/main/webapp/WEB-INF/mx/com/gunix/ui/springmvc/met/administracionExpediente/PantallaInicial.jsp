@@ -159,22 +159,22 @@
 						</div>
 						<div class="content large-12 columns" id="panelEsquemaPago">
 							<p>
-								<jsp:include page="PantallaInicialEsquemaPago.jsp" ></jsp:include>
+								<%--<jsp:include page="PantallaInicialEsquemaPago.jsp" ></jsp:include>--%>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelTrayectoriaLaboral">
 							<p>
-								<jsp:include page="PantallaInicialTrayectoriaLaboral.jsp" ></jsp:include>
+								<%--<jsp:include page="PantallaInicialTrayectoriaLaboral.jsp" ></jsp:include>--%>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelFormacionAcademica">
 							<p>
-								<jsp:include page="PantallaInicialFormacionAcademica.jsp" ></jsp:include>
+								<%--<jsp:include page="PantallaInicialFormacionAcademica.jsp" ></jsp:include>--%>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelDependientesFamiliares">
 							<p>
-								<jsp:include page="PantallaInicialDependientesFamiliares.jsp" ></jsp:include>
+								<%--<jsp:include page="PantallaInicialDependientesFamiliares.jsp" ></jsp:include>--%>
 							</p>
 						</div>
 					</div>
