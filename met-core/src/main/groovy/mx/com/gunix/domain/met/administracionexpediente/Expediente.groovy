@@ -3,6 +3,7 @@ package mx.com.gunix.domain.met.administracionexpediente
 import groovy.transform.Canonical
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
+import javax.validation.constraints.Pattern
 
 @Canonical
 class Expediente implements Serializable {
@@ -18,22 +19,51 @@ class Expediente implements Serializable {
     String requeridosDatosGenerales
 
     /*Datos Personales*/
-    String apellidoPaterno
+	@Pattern(regexp="[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]{1,50}")
+	String apellidoPaterno
+	
+	@Pattern(regexp="[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]{1,50}")
     String apellidoMaterno
+	
+	//@NotNull
+	//@Size(min=1)
+	@Pattern(regexp="[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]{1,50}")
+    String nombre
+	
+	@Pattern(regexp="""[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}\$""")
+    String curp
+	
+	@Pattern (regexp = "[a-zA-Z&]{4}[0-9]{6}[a-zA-Z0-9]{3}\$")
+    String rfc
 	
 	@NotNull
 	@Size(min=1)
-    String nombre
-	
-    String curp
-    String rfc
     String fechaNacimiento
+	
     String edadTrabajador
+	
+	@NotNull
+	@Size(min=1)
     String cveSexo
-    String cveEstadoCivil
+
+	@NotNull
+	@Size(min=1)
     String cveNacionalidad
+	
+	@NotNull
+	@Size(min=1)
+    String cveEstadoCivil
+	
+	@NotNull
+	@Size(min=1)
     String cvePais
+	
+	@NotNull
+	@Size(min=1)
     String cveEntidadFederativa
+	
+	@NotNull
+	@Size(min=1)
     String cveMunicipio
 
     /*Datos Generales*/

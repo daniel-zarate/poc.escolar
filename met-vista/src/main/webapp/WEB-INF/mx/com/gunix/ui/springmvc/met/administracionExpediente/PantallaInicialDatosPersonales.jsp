@@ -18,7 +18,7 @@
 			$(document).ready(function(){
 				console.log("llamando a foundation");
 				$(document).foundation();
-				Foundation.libs.abide.validate($( ":input" ), {type:''})
+				//Foundation.libs.abide.validate($( ":input" ), {type:''})
 				console.log("llamando a abide");
 				//$(document).trigger('validate.fndtn.abide');
 			});

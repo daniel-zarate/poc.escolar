@@ -240,7 +240,7 @@
 			
 			console.log("ejecutando foundation al final")
 			$(document).foundation();
-			
+			Foundation.libs.abide.validate($( ":input" ), {type:''})
 		})
 		
 		
