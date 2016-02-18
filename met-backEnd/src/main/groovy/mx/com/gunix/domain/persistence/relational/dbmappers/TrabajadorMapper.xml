@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.TrabajadorMapper">
+  <resultMap id="trabajadorResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDTrabajador">
+    <id property="id" column="ID_TRABAJADOR"/>
+    <result property="nombre" column="NOMBRE"/>
+    <result property="apellidoPaterno" column="APELLIDO_PATERNO" />
+    <result property="apellidoMaterno" column="APELLIDO_MATERNO" />
+  </resultMap>
+</mapper>
