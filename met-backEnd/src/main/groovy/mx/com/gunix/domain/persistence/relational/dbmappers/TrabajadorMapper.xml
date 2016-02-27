@@ -2,10 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.TrabajadorMapper">
-  <resultMap id="trabajadorResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDTrabajador">
-    <id property="id" column="ID_TRABAJADOR"/>
-    <result property="nombre" column="NOMBRE"/>
-    <result property="apellidoPaterno" column="APELLIDO_PATERNO" />
-    <result property="apellidoMaterno" column="APELLIDO_MATERNO" />
-  </resultMap>
+
+    <resultMap id="trabajadorResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDTrabajador">
+        <id property="id" column="ID_TRABAJADOR"/>
+        <result property="ramo" column="CVE_RAMO"/>
+        <result property="unidadResponsable" column="CVE_UNIDAD_RESPONSABLE"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="apellidoPaterno" column="APELLIDO_PATERNO"/>
+        <result property="apellidoMaterno" column="APELLIDO_MATERNO"/>
+        <result property="curp" column="CURP"/>
+        <result property="rfc" column="RFC"/>
+        <result property="numTrabajador" column="NUM_TRABAJADOR"/>
+        <result property="fechaNacimiento" column="FECHA_NACIMIENTO"/>
+        <result property="sexo" column="CVE_SEXO"/>
+        <result property="pais" column="CVE_PAIS"/>
+        <result property="folioActiviti" column="FOLIO_ACTIVITI"/>
+        <result property="numeroSS" column="NUM_SEGURO_SOCIAL"/>
+        <result property="nacionalidad" column="CVE_NACIONALIDAD"/>
+        <result property="status" column="CVE_ESTATUS"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
+    </resultMap>
+
 </mapper>
