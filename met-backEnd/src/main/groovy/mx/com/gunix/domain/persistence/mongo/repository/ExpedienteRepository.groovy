@@ -1,6 +1,6 @@
-package mx.com.gunix.domain.persistence.repository
+package mx.com.gunix.domain.persistence.mongo.repository
 
-import mx.com.gunix.domain.persistence.model.ExpedienteDB
+import mx.com.gunix.domain.persistence.mongo.model.ExpedienteDB
 import org.springframework.data.mongodb.repository.MongoRepository
 
 

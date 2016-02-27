@@ -1,4 +1,4 @@
-package mx.com.gunix.domain.persistence.model.embedded
+package mx.com.gunix.domain.persistence.mongo.model.embedded
 
 class Beneficiario {
 

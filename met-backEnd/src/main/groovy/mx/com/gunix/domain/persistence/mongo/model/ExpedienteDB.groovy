@@ -1,12 +1,12 @@
-package mx.com.gunix.domain.persistence.model
+package mx.com.gunix.domain.persistence.mongo.model
 
 import groovy.transform.Canonical
-import mx.com.gunix.domain.persistence.model.embedded.Beneficiarios
-import mx.com.gunix.domain.persistence.model.embedded.DatosGenerales
-import mx.com.gunix.domain.persistence.model.embedded.DatosPersonales
-import mx.com.gunix.domain.persistence.model.embedded.EsquemaPago
-import mx.com.gunix.domain.persistence.model.embedded.FormacionAcademica
-import mx.com.gunix.domain.persistence.model.embedded.TrayectoriaLaboral
+import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosGenerales
+import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosPersonales
+import mx.com.gunix.domain.persistence.mongo.model.embedded.EsquemaPago
+import mx.com.gunix.domain.persistence.mongo.model.embedded.FormacionAcademica
+import mx.com.gunix.domain.persistence.mongo.model.embedded.TrayectoriaLaboral
+import mx.com.gunix.domain.persistence.mongo.model.embedded.Beneficiarios
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field

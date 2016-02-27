@@ -1,13 +1,13 @@
 package mx.com.gunix.service.met.administracionexpediente.impl
 
 import mx.com.gunix.domain.met.administracionexpediente.Expediente
-import mx.com.gunix.domain.persistence.model.ExpedienteDB
-import mx.com.gunix.domain.persistence.model.embedded.Catalogo
-import mx.com.gunix.domain.persistence.model.embedded.DatosGenerales
-import mx.com.gunix.domain.persistence.model.embedded.DatosPersonales
-import mx.com.gunix.domain.persistence.model.embedded.Domicilio
-import mx.com.gunix.domain.persistence.model.embedded.EsquemaPago
-import mx.com.gunix.domain.persistence.repository.ExpedienteRepository
+import mx.com.gunix.domain.persistence.mongo.model.ExpedienteDB
+import mx.com.gunix.domain.persistence.mongo.model.embedded.Catalogo
+import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosGenerales
+import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosPersonales
+import mx.com.gunix.domain.persistence.mongo.model.embedded.Domicilio
+import mx.com.gunix.domain.persistence.mongo.model.embedded.EsquemaPago
+import mx.com.gunix.domain.persistence.mongo.repository.ExpedienteRepository
 import mx.com.gunix.service.met.administracionexpediente.IAdministracionExpedienteService
 import org.springframework.stereotype.Service
 
@@ -29,7 +29,7 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
         if (!expediente)
             throw new IllegalArgumentException('Parametro Expediente es obligatorio')
 
-        def expedienteMongo = mapExpedienteToExpedienteDB(expediente)
+        def expedienteMongo = mapExpedienteToExpedienteMongoDB(expediente)
 
         expedienteMongo = expedienteRepository.save(expedienteMongo)
 
@@ -39,7 +39,7 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
         return expediente
     }
 
-    private static ExpedienteDB mapExpedienteToExpedienteDB(Expediente expediente){
+    private static ExpedienteDB mapExpedienteToExpedienteMongoDB(Expediente expediente){
 
 
         def expedienteMongo = new ExpedienteDB()
