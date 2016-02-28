@@ -2,11 +2,6 @@ package mx.com.gunix.domain.persistence.relational.model
 
 import groovy.transform.Canonical
 
-import java.sql.Timestamp
-
-/**
- * Created by Daniel on 09/02/2016.
- */
 @Canonical
 class TDTrabajador implements Serializable{
 
@@ -28,7 +23,11 @@ class TDTrabajador implements Serializable{
     String status
     String rfcUsuario
     Date fecha
-
-
+    Integer claveEntidadFederativa
+    Integer claveMunicipio
+    Long folioSolicitud
+    String numeroTrabajador
+    Integer estadoCivil
+    String foto
 
 }

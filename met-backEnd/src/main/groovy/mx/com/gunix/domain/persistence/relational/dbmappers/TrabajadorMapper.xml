@@ -22,6 +22,12 @@
         <result property="status" column="CVE_ESTATUS"/>
         <result property="rfcUsuario" column="RFC_USUARIO"/>
         <result property="fecha" column="FECHA"/>
+        <result property="claveEntidadFederativa" column="CVE_ENTIDAD_FEDERATIVA"/>
+        <result property="claveMunicipio" column="CVE_MUNICIPIO"/>
+        <result property="folioSolicitud" column="FOLIO_SOLICITUD"/>
+        <result property="numeroTrabajador" column="NUMERO_TRABAJADOR"/>
+        <result property="estadoCivil" column="CVE_ESTADO_CIVIL"/>
+        <result property="foto" column="ID_FOTO"/>
     </resultMap>
 
 </mapper>
