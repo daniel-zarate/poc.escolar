@@ -29,7 +29,7 @@ class TrabajadorMapperTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     void insertTrabajadorTest() {
 
         def trabajadorToInsert = new TDTrabajador()
