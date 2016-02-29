@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.RutaArchivosMapper">
+
+    <resultMap id="rutaArchivosResultMap" type="mx.com.gunix.domain.persistence.relational.model.TCRutaArchivos">
+        <id property="id" column="ID"/>
+        <id property="rutaAbsoluta" column="RUTA_ABSOLUTA"/>
+        <id property="nombre" column="NOMBRE"/>
+        <id property="fecha" column="FECHA"/>
+        <id property="extension" column="EXTENSION"/>
+
+    </resultMap>
+
+</mapper>
