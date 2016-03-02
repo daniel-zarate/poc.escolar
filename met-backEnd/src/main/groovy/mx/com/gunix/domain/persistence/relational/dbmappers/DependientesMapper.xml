@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.DependientesMapper">
+
+    <resultMap id="dependientesResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDDependientes">
+        <id property="id" column="ID_DEPENDIENTE"/>
+        <result property="idTrabajador" column="ID_TRABAJADOR"/>
+        <result property="curpDependiente" column="CURP_DEPENDIENTE"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="apellidoPaterno" column="APELLIDO_PATERNO"/>
+        <result property="apellidoMaterno" column="APELLIDO_MATERNO"/>
+        <result property="fechaNacimiento" column="FECHA_NACIMIENTO"/>
+        <result property="cveSexo" column="CVE_SEXO"/>
+        <result property="cveParentesco" column="CVE_PARENTESCO"/>
+        <result property="cveNivel" column="CVE_NIVEL"/>
+        <result property="cveGrado" column="CVE_GRADO"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
+    </resultMap>
+
+</mapper>
