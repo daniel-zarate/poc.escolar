@@ -16,5 +16,5 @@ interface DatosGeneralesMapper {
 
     @Insert("INSERT INTO  met.TD_DATOS_GENERALES (ID_TRABAJADOR,TELEFONO_CELULAR,CORREO_ELECTRONICO,CALLE,CODIGO_POSTAL,CVE_COLONIA,CVE_ENTIDAD_FEDERATIVA,CVE_MUNICIPIO,LOCALIDAD,OBSERVACIONES,TELEFONO_FIJO,ID_DOCUMENTO,RFC_USUARIO,FECHA) VALUES(#{idTrabajador},#{telefonoCelular},#{correoElectronico},#{calle},#{codigoPostal},#{colonia},#{entidadFederativa},#{municipio},#{localidad},#{observaciones},#{telefonoFijo},#{idDocumento},#{rfcUsuario},#{fecha})")
     @Options(useGeneratedKeys = true, keyProperty = "id", flushCache=true)
-    void createDatosGenerales(TDDatosGenerales trabajador)
+    void createDatosGenerales(TDDatosGenerales datosGenerales)
 }

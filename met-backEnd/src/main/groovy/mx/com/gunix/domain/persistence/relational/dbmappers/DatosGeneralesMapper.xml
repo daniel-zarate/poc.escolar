@@ -5,20 +5,20 @@
 
     <resultMap id="datosGeneralesResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDDatosGenerales">
         <id property="id" column="ID_DATOS_GENERALES"/>
-        <id property="idTrabajador" column="ID_TRABAJADOR"/>
-        <id property="telefonoCelular" column="TELEFONO_CELULAR"/>
-        <id property="correoElectronico" column="CORREO_ELECTRONICO"/>
-        <id property="calle" column="CALLE"/>
-        <id property="codigoPostal" column="CODIGO_POSTAL"/>
-        <id property="colonia" column="CVE_COLONIA"/>
-        <id property="entidadFederativa" column="CVE_ENTIDAD_FEDERATIVA"/>
-        <id property="municipio" column="CVE_MUNICIPIO"/>
-        <id property="localidad" column="LOCALIDAD"/>
-        <id property="observaciones" column="OBSERVACIONES"/>
-        <id property="telefonoFijo" column="TELEFONO_FIJO"/>
-        <id property="idDocumento" column="ID_DOCUMENTO"/>
-        <id property="rfcUsuario" column="RFC_USUARIO"/>
-        <id property="fecha" column="FECHA"/>
+        <result property="idTrabajador" column="ID_TRABAJADOR"/>
+        <result property="telefonoCelular" column="TELEFONO_CELULAR"/>
+        <result property="correoElectronico" column="CORREO_ELECTRONICO"/>
+        <result property="calle" column="CALLE"/>
+        <result property="codigoPostal" column="CODIGO_POSTAL"/>
+        <result property="colonia" column="CVE_COLONIA"/>
+        <result property="entidadFederativa" column="CVE_ENTIDAD_FEDERATIVA"/>
+        <result property="municipio" column="CVE_MUNICIPIO"/>
+        <result property="localidad" column="LOCALIDAD"/>
+        <result property="observaciones" column="OBSERVACIONES"/>
+        <result property="telefonoFijo" column="TELEFONO_FIJO"/>
+        <result property="idDocumento" column="ID_DOCUMENTO"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
     </resultMap>
 
 </mapper>

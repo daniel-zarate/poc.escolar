@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.EsquemaPagoMapper">
+
+    <resultMap id="esquemaPagoResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDEsquemaPago">
+        <id property="id" column="ID_ESQUEMA_PAGO"/>
+        <result property="idTrabajador" column="ID_TRABAJADOR"/>
+        <result property="bancarizado" column="BANCARIZADO"/>
+        <result property="claveBanco" column="CVE_BANCO"/>
+        <result property="clabe" column="CLABE"/>
+        <result property="idDocumento" column="ID_DOCUMENTO"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
+    </resultMap>
+
+</mapper>

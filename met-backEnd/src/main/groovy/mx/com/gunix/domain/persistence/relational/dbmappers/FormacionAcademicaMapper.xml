@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.FormacionAcademicaMapper">
+
+    <resultMap id="formacionAcademicaResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDFormacionAcademica">
+        <id property="id" column="ID_FORMACION_ACADEMICA"/>
+        <result property="idTrabajador" column="ID_TRABAJADOR"/>
+        <result property="nivel" column="CVE_NIVEL"/>
+        <result property="institucionEducativa" column="INSTITUCION_EDUCATIVA"/>
+        <result property="nombreCarrera" column="CARRERA"/>
+        <result property="documento" column="CVE_DOCUMENTO"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
+        <result property="numeroCedula" column="NUMERO_CEDULA"/>
+        <result property="anios" column="ANIOS"/>
+        <result property="idCarrera" column="ID_CARRERA"/>
+
+    </resultMap>
+
+</mapper>

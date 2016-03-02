@@ -5,11 +5,10 @@
 
     <resultMap id="rutaArchivosResultMap" type="mx.com.gunix.domain.persistence.relational.model.TCRutaArchivos">
         <id property="id" column="ID"/>
-        <id property="rutaAbsoluta" column="RUTA_ABSOLUTA"/>
-        <id property="nombre" column="NOMBRE"/>
-        <id property="fecha" column="FECHA"/>
-        <id property="extension" column="EXTENSION"/>
-
+        <result property="rutaAbsoluta" column="RUTA_ABSOLUTA"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="fecha" column="FECHA"/>
+        <result property="extension" column="EXTENSION"/>
     </resultMap>
 
 </mapper>
