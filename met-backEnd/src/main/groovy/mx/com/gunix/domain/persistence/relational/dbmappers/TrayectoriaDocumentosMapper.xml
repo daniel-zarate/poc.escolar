@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.TrayectoriaDocumentosMapper">
+
+    <resultMap id="trayectoriaDocumentosResultMap" type="mx.com.gunix.domain.persistence.relational.model.TRTrayectoriaDocumentos">
+        <id property="idTrayectoriaDetalle" column="ID_TRAYECTORIA_DETALLE"/>
+        <id property="idDocumento" column="ID_DOCUMENTO"/>
+    </resultMap>
+
+</mapper>

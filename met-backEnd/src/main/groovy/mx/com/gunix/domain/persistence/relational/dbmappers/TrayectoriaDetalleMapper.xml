@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mx.com.gunix.domain.persistence.relational.dbmappers.TrayectoriaDeatalleMapper">
+
+    <resultMap id="trayectoriaDetalleResultMap" type="mx.com.gunix.domain.persistence.relational.model.TDTrayectoriaDetalle">
+        <id property="id" column="ID_TRAYECTORIA_DETALLE"/>
+        <result property="idTrayectoriaLaboral" column="ID_TRAYECTORIA_LABORAL"/>
+        <result property="dependencia" column="DEPENDENCIA"/>
+        <result property="idTipoAntiguedad" column="ID_TIPO_ANTIGUEDAD"/>
+        <result property="idRama" column="ID_RAMA"/>
+        <result property="idPeriodo" column="ID_PERIODO"/>
+        <result property="desde" column="DESDE"/>
+        <result property="hasta" column="HASTA"/>
+        <result property="rfcUsuario" column="RFC_USUARIO"/>
+        <result property="fecha" column="FECHA"/>
+    </resultMap>
+
+</mapper>

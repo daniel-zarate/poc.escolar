@@ -3,14 +3,12 @@ package mx.com.gunix.domain.persistence.relational.model
 import groovy.transform.Canonical
 
 @Canonical
-class TDEsquemaPago {
+class TDTrayectoriaLaboral {
 
-    Long id
+    Long idTrayectoriaLaboral
     Long idTrabajador
-    Integer bancarizado
-    Long claveBanco
-    String clabe
-    Long idDocumento
+    Long regimen
     String rfcUsuario
     Date fecha
+    BigDecimal ahorroSolidario
 }
