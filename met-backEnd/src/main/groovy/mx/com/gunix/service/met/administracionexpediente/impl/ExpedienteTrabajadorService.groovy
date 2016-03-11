@@ -1,7 +1,11 @@
 package mx.com.gunix.service.met.administracionexpediente.impl
 
 import mx.com.gunix.domain.persistence.mongo.model.ExpedienteDB
+import mx.com.gunix.domain.persistence.relational.dbmappers.DatosGeneralesMapper
+import mx.com.gunix.domain.persistence.relational.dbmappers.EsquemaPagoMapper
 import mx.com.gunix.domain.persistence.relational.dbmappers.TrabajadorMapper
+import mx.com.gunix.domain.persistence.relational.model.TDDatosGenerales
+import mx.com.gunix.domain.persistence.relational.model.TDEsquemaPago
 import mx.com.gunix.domain.persistence.relational.model.TDTrabajador
 import mx.com.gunix.service.met.administracionexpediente.IExpedienteTrabajadorService
 import org.springframework.stereotype.Service
@@ -11,12 +15,18 @@ import javax.annotation.Resource
 
 @Service
 @Transactional
-class ExpedienteTrabajadorService implements IExpedienteTrabajadorService{
+class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
 
     @Resource
     TrabajadorMapper trabajadorMapper
 
-    void guardarExpedienteTrabajador(ExpedienteDB expedienteDB){
+    @Resource
+    DatosGeneralesMapper datosGeneralesMapper
+
+    @Resource
+    EsquemaPagoMapper esquemaPagoMapper
+
+    void guardarExpedienteTrabajador(ExpedienteDB expedienteDB) {
 
         if (!expedienteDB)
             throw new IllegalArgumentException('Expediente debe ser obligatorio')
@@ -55,6 +65,46 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService{
         // guarda el trabajador en la bd
         trabajadorMapper.createTrbajador(trabajador)
 
+        if (!expedienteDB.datosGenerales)
+            throw new IllegalArgumentException('Datos generales debe ser obligatorio')
+
+        def datosGenerales = new TDDatosGenerales()
+
+        datosGenerales.with {
+            idTrabajador = trabajador.id
+            telefonoCelular = expedienteDB?.datosGenerales?.telefonoCelular
+            correoElectronico = expedienteDB?.datosGenerales?.correoElectronicoPersonal
+            calle = expedienteDB?.datosGenerales?.domicilio?.calleNumero
+            codigoPostal = expedienteDB?.datosGenerales?.domicilio?.codigoPostal
+            colonia = expedienteDB?.datosGenerales?.domicilio?.colonia?.id
+            entidadFederativa = expedienteDB?.datosGenerales?.domicilio?.entidad?.id
+            municipio = expedienteDB?.datosGenerales?.domicilio?.municipio?.id
+            localidad = expedienteDB?.datosGenerales?.domicilio?.localidad
+            observaciones = expedienteDB?.datosGenerales?.domicilio?.observaciones
+            telefonoFijo = expedienteDB?.datosGenerales?.domicilio?.telfonoFijo
+            //idDocumento
+            //rfcUsuario
+            //fecha
+        }
+
+        datosGeneralesMapper.createDatosGenerales(datosGenerales)
+
+        if (!expedienteDB.esquemaPago)
+            throw new IllegalArgumentException('Esquema de pago debe ser obligatorio')
+
+        def esquemaDePago = new TDEsquemaPago()
+
+        esquemaDePago.with {
+            idTrabajador = trabajador.id
+            bancarizado = expedienteDB?.esquemaPago?.bancarizado ? 1 : 0
+            claveBanco = expedienteDB?.esquemaPago?.cveBanco?.toLong()
+            clabe = expedienteDB?.esquemaPago?.clabe
+            //idDocumento
+            //rfcUsuario
+            //fecha
+        }
+
+        esquemaPagoMapper.createEsquemaPago(esquemaDePago)
 
     }
 }
