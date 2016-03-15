@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Esquema Pago</title>
-<%-- <script src="${resource(dir: 'js/administracionExpediente/v1/', file:'PantallaInicialEsquemaPago.js')}" type="text/javascript"></script> --%>
+<script src="/met-vista/js/administracionExpediente/v1/PantallaInicialEsquemaPago.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 
 var selBanco = '<spring:message code="administracionExpediente.v1.view.error.esquemaPago.seleccionar.banco" javaScriptEscape="true" />';
@@ -70,34 +71,20 @@ var activitiBancarizado = "${bancarizado != null ? bancarizado : null}"
 				</div>
 				<div class="small-12 columns">
 					<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="administracionExpediente.v1.view.label.esquemaPago.documentacion" /><font color="red">*</font></label>
-					<fieldset  class="sep-fieldset">					
-<%-- 							<g:each in="${lstDocumentosEsquemaPago}" var="item"> --%>
-<!-- 								<div class="small-5 columns"> -->
-<!-- 									<div class="row collapse">	 -->
-<!-- 										<div class="small-3 columns">							 -->
-<%-- 											<img alt="" src="images/administracionExpediente/v1/documentoNoCargado.png" id="documento${item.cveDocumento.trim()}" class="imgDocumento">						 --%>
-<!-- 										</div> -->
+					<fieldset class="sep-fieldset">					
+							
+								<div class="small-5 columns">
+									<div class="row collapse">	
+										<div class="small-3 columns">							
+											<img alt="" src="images/administracionExpediente/v1/documentoNoCargado.png" id="imgEC" class="imgDocumento">						
+										</div>
 															
-<!-- 										<div class="small-9 columns"> -->
-<%-- 											<g:if test="${!mapDoctosEsquemaPago}">	 --%>
-<%-- 												<label>${item.documento}</label> --%>
-<!-- 											</g:if> -->
-<%-- 											<g:if test="${mapDoctosEsquemaPago}"> --%>
-<%-- 												<g:set var="flag" value="${0}" /> --%>
-<%-- 												<g:each in="${mapDoctosEsquemaPago}" var="filePreview"> --%>
-<%-- 													<g:if test="${filePreview.value.trim().split('_')[1].split('\\.')[0] == item.cveDocumento.trim()}">												 --%>
-<%-- 														<insane:insanePreviewMetFile idFile="${filePreview.key}"  name="${item.documento}"/> --%>
-<%-- 														<g:set var="flag" value="${1}" /> --%>
-<!-- 													</g:if> -->
-<!-- 												</g:each> -->
-<%-- 												<g:if test="${flag == 0}"> --%>
-<%-- 													<label>${item.documento}</label> --%>
-<!-- 												</g:if> -->
-<!-- 											</g:if> -->
-<!-- 										</div>		 -->
-<!-- 									</div>	 -->
-<!-- 								</div>			 -->
-<!-- 							</g:each>	 -->
+										<div class="small-9 columns">
+												<label>Estado de cuenta</label>
+										</div>		
+									</div>	
+								</div>			
+								
 				 	</fieldset>	
 				</div>		
 				<div class="large-12 columns" id="cargaArchivoEsquemaPago">
@@ -108,11 +95,7 @@ var activitiBancarizado = "${bancarizado != null ? bancarizado : null}"
 					</div>
 					<div class="row">	
 						<div class="small-8 columns">
-					
-<%-- 								<g:if test="${"crear".equals(idOperacion) || "modificar".equals(idOperacion)  || idOperacion == 'seguimiento'}"> --%>
-<%-- 									<insane:uploadMetFile id="mapDoctosEsquemaPago"  value="${mapDoctosEsquemaPago}"  /> --%>
-<!-- 									<small class="error">El archivo es requerido</small> -->
-<!-- 								</g:if> -->
+							<input type="file"  value="${datosPersonalesFile}" id="datosGeneralesFile" name="datosGeneralesFile" data-url="controller/upload" />
 						</div>	
 					</div>
 				</div>

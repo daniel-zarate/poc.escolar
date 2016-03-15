@@ -67,15 +67,37 @@ class Expediente implements Serializable {
     String cveMunicipio
 
     /*Datos Generales*/
+	@Pattern (regexp = /[0-9]{10}/)
     String celular
+	
+	@Pattern (regexp = /[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})/)
     String email
+	
+	@Pattern (regexp = /^[0-9a-zA-ZáéíóúÁÉÍÓÚüÜñÑ \.;,\\/&#"'-+]+$/)
     String calle
+	
+	@Pattern (regexp = /[0-9]{5}/)
     String codPosta
+	
+	@NotNull
+	@Size(min=1)
     String colonia
+	
+	@NotNull
+	@Size(min=1)
     String entidad
+	
+	@NotNull
+	@Size(min=1)
     String municipio
+	
+	@Pattern(regexp = /^[0-9a-zA-ZáéíóúÁÉÍÓÚüÜñÑ \.;,\\/&#"'-+]+$/ )
     String localidad
+	
+	@Pattern (regexp = /[0-9]{10}/)
     String telefono
+	
+	@Pattern(regexp = /[0-9a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]{1,500}/)
     String observaciones
 
     /*Esquema de pago*/
@@ -114,7 +136,7 @@ class Expediente implements Serializable {
     String institucion
     String nombreInstitucion
     String labelCarrera
-    String cedulaProfecional
+    String cedulaProfesional
     String primerApellidoDependientesFamiliares
     String segundoApellidoDependientesFamiliares
     String nombreDependientesFamiliares

@@ -40,7 +40,7 @@
 		var currentProfile = "${perfilName}"
 	</script>
 	
-<%-- 	<script src="${resource(dir: 'js/administracionExpediente/v1/', file: 'PantallaInicialTrayectoriaLaboral.js')}" type="text/javascript"></script> --%>
+	<script	src="/met-vista/js/administracionExpediente/v1/PantallaInicialTrayectoriaLaboral.js" type="text/javascript"></script>
 	
 	<style type="text/css">
 	

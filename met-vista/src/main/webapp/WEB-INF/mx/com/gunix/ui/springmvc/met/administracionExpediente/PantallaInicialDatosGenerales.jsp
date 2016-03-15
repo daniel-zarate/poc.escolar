@@ -15,7 +15,9 @@
 </script>
 <%-- <script	src="${resource(dir: 'js/foundation', file: 'foundation.abide.js')}" type="text/javascript"></script> --%>
 <%-- <script	src="${resource(dir: 'js/api', file: 'RestClientURI.js',plugin:'in-sane-fwk')}"	type="text/javascript"></script> --%>
-<%-- <script	src="${resource(dir: 'js/administracionExpediente/v1/', file:'PantallaInicialDatosGenerales.js')}" type="text/javascript"></script> --%>
+
+<script	src="/met-vista/js/administracionExpediente/v1/PantallaInicialDatosGenerales.js" type="text/javascript"></script>
+<script	src="/met-vista/js/administracionExpediente/v1/cargaArchivosDatosGenerales.js" type="text/javascript"></script>
 
 </head>
 
@@ -27,7 +29,7 @@
 		<input id="idOperacion" type="hidden" value="${idOperacion}" />
 <%-- 		<input type="hidden" name="documentosDatosGenerales" id ="documentosDatosGenerales" value="${ lstDocumentosDatosGenerales ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(lstDocumentosDatosGenerales) : '' }" /> --%>
 <%-- 		<input type="hidden" id ="doctosCargadosDatosGenerales" value="${ mapDoctosDatosGenerales == null ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(mapDoctosDatosGenerales) : '' }" /> --%>
-		<input name="requeridosDatosGenerales" id="requeridosDatosGenerales" type="hidden" value="false"/>
+<!-- 		<input name="requeridosDatosGenerales" id="requeridosDatosGenerales" type="hidden" value="false"/> -->
 		<input  id="rfcDG" type="hidden" value="${rfc}"/>
 		
 		<div class="small-12 columns" align="left">
@@ -191,44 +193,24 @@
 
 		<label>&nbsp;&nbsp;&nbsp;<spring:message code="administracionExpediente.v1.view.label.datosGenerales.doc"  /><font color="red">* </font></label>
 		<fieldset class="sep-fieldset">
-<!-- 			<g:each in="${lstDocumentosDatosGenerales}" var="item">		 -->
-<!-- 				<div class="large-5 columns"> -->
-<!-- 					<div class="row collapse" id="divDocumentos"> -->
-<!-- 						<div class="large-3 columns"> -->
-<!-- 							<img alt="" src="images/administracionExpediente/v1/documentoNoCargado.png" id="documento${item.cveDocumento.trim()}" class="imgDocumento">	 -->
-<!-- 						</div> -->
-<!-- 						<div class="large-9 columns"> -->
-<!-- 							<g:if test="${!mapDoctosDatosGenerales}"> -->
-<!-- 								<label>${item.documento}</label> -->
-<!-- 							</g:if>	 -->
-<!-- 							<g:if test="${mapDoctosDatosGenerales}"> -->
-<!-- 								<g:set var="flag" value="${0}" /> -->
-<!-- 								<g:each in="${mapDoctosDatosGenerales}" var="filePreview"> -->
-<!-- 									<g:if test="${filePreview.value.trim().split('_')[1].split('\\.')[0] == item.cveDocumento.trim()}"> -->
-<!-- 										<insane:insanePreviewMetFile idFile="${filePreview.key}" name="${item.documento}" /> -->
-<!-- 										<g:set var="flag" value="${1}" /> -->
-<!-- 									</g:if> -->
-<!-- 								</g:each> -->
-<!-- 								<g:if test="${flag == 0}"> -->
-<!-- 										<label>${item.documento}</label> -->
-<!-- 									</g:if> -->
-<!-- 							</g:if>								 -->
-<!-- 						</div> -->
-<!-- 					</div>			 -->
-<!-- 				</div> -->
-<!-- 			</g:each>  -->
+				<div class="large-5 columns">
+					<div class="row collapse" id="divDocumentos">
+						<div class="large-3 columns">
+							<img alt="" src="images/administracionExpediente/v1/documentoNoCargado.png" id="imgCD" class="imgDocumento">	
+						</div>
+						<div class="large-9 columns">
+								<!-- label id="CD_label" obligatorio="T">Comprobante de Domicilio</label-->
+								<label>Comprobante de Domicilio</label>
+						</div>
+					</div>			
+				</div>
 		</fieldset>
 		
 		
-<%--		<g:if test="${mapDoctosDatosGenerales ==null|| mapDoctosDatosGenerales == '' ||mapDoctosDatosGenerales== [:] || tipoDeProceso != null }">	--%>
-<%--		    <g:if test="${!mapDoctosDatosGenerales}">--%>
-		      <div class="small-5 columns"  id="cargaArchivoDatosGenerales"> 		
-<!-- 				<g:if test="${"crear".equals(idOperacion) || "modificar".equals(idOperacion)  || idOperacion == 'seguimiento'}" > -->
-<%-- 					<insane:uploadMetFile id="mapDoctosDatosGenerales" value="${mapDoctosDatosGenerales}" required="true"/> --%>
-<!-- 				</g:if> -->
-		       </div> 
-<%--		    </g:if>--%>
-<%--		</g:if>--%>
-<%--	</insane:insaneForm>--%>
+
+		      <div class="small-5 columns"  id="cargaArchivoDatosGenerales">
+		      	<input type="file"  value="${datosPersonalesFile}" id="datosGeneralesFile" name="datosGeneralesFile" data-url="controller/upload" />
+		      </div> 
+
 </body>
 </html>

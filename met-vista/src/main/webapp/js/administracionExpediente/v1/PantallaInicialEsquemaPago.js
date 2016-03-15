@@ -18,11 +18,11 @@ jQuery(document).ready(function() {
 			  if(this.value != ""){
 			      var esBancarizado = this.value;       
 			      if(esBancarizado == 1){		    	  
-			    	  jQuery("#tipoBancarizado").prop("hidden",false);
+			    	  jQuery("#tipoBancarizado").show();
 			    	  jQuery("#mapDoctosEsquemaPagoMet").prop("required",true);
 			    	  isBancarizado = true;			    	  
 			      }if(esBancarizado == 0){
-			    	  jQuery("#tipoBancarizado").prop("hidden",true);
+			    	  jQuery("#tipoBancarizado").hide();
 			    	  jQuery("#mapDoctosEsquemaPagoMet").removeAttr('required');
 			    	  jQuery("#documentoEC").attr("src", "images/administracionExpediente/v1/documentoNoCargado.png")
 			    	  limpiarFormulario();
@@ -36,40 +36,23 @@ jQuery(document).ready(function() {
       
 
 		// renderizar los documentos que ya hayan sido cargados.
-		if(jQuery("#doctosCargadosEsquemaPagoMap").val()){
-			
-			var valueHidden = jQuery("#doctosCargadosEsquemaPagoMap").val();			 
-			var lista = jQuery.parseJSON(valueHidden);
-			
-			jQuery.each(lista, function(k,v){
-				var cveDocumento = v.substring(v.indexOf('_') + 1, v.indexOf('.')).toUpperCase();
-				jQuery("#documento" + cveDocumento).attr("src","images/administracionExpediente/v1/documentoCargado.png");
-//					jQuery("#" + cveDocumento).attr("alt", '1');
-			});
-		}	 
+//		if(jQuery("#doctosCargadosEsquemaPagoMap").val()){
+//			
+//			var valueHidden = jQuery("#doctosCargadosEsquemaPagoMap").val();			 
+//			var lista = jQuery.parseJSON(valueHidden);
+//			
+//			jQuery.each(lista, function(k,v){
+//				var cveDocumento = v.substring(v.indexOf('_') + 1, v.indexOf('.')).toUpperCase();
+//				jQuery("#documento" + cveDocumento).attr("src","images/administracionExpediente/v1/documentoCargado.png");
+//			});
+//		}	 
       
-      
-//	var patt = new RegExp(procesoAutorizacion);  
-//	
-//	if(patt.test(cveEstatusExp) || 
-//			cveEstatusExp ==autorizado  ||
-//			cveEstatusExp ==rechazado)
-//	       {	
-//				jQuery("#bancarizadoSi").attr("disabled","disabled")
-//				jQuery("#bancarizadoNo").attr("disabled","disabled")
-//				jQuery("#cveBanco").attr("disabled","disabled")
-//				jQuery("#clabe").attr("disabled","disabled")
-//				jQuery("#cargaArchivoEsquemaPago").hide();
-//			}
-      
+    
 });
 
 
 	function verificaProcedimiento(){
-	if (procedimiento == "crear") {
-			// Alta
-		   
-		} else if (procedimiento == 'eliminar' || procedimiento == 'consultar') {
+		if (procedimiento == 'eliminar' || procedimiento == 'consultar') {
 			//Eliminar || Consultar
 			   var esBancarizado = jQuery("#isBancarizado").val();
 			   
@@ -77,9 +60,9 @@ jQuery(document).ready(function() {
                jQuery("[name=bancarizado]").filter("[value="+esBancarizado+"]").prop("checked",true);
 
 			   if(esBancarizado == 1){		    	  
-		    	  jQuery("#tipoBancarizado").prop("hidden",false);  
+		    	  jQuery("#tipoBancarizado").show();  
 		       }if(esBancarizado == 0){
-		    	  jQuery("#tipoBancarizado").prop("hidden",true);
+		    	  jQuery("#tipoBancarizado").hide();
 		    	  limpiarFormulario();
 		       }
 		       jQuery("#bancarizado").prop('disabled', true);	
@@ -94,10 +77,10 @@ jQuery(document).ready(function() {
                jQuery("[name=bancarizado]").filter("[value="+esBancarizado+"]").prop("checked",true);
 
 			   if(esBancarizado == 1){		    	  
-		    	  jQuery("#tipoBancarizado").prop("hidden",false);
+		    	  jQuery("#tipoBancarizado").show();
 		    	  jQuery("#mapDoctosEsquemaPagoMet").attr("required",true);		    	  
 		       }if(esBancarizado == 0){
-		    	  jQuery("#tipoBancarizado").prop("hidden",true);
+		    	  jQuery("#tipoBancarizado").hide();
 		    	  limpiarFormulario();
 		       }
 		  }else if (procedimiento == 'seguimiento') {
@@ -108,14 +91,19 @@ jQuery(document).ready(function() {
               jQuery("[name=bancarizado]").filter("[value="+esBancarizado+"]").prop("checked",true);
 
 			   if(esBancarizado == 1){		    	  
-		    	  jQuery("#tipoBancarizado").prop("hidden",false);
+		    	  jQuery("#tipoBancarizado").show();
 		       }if(esBancarizado == 0){
-		    	  jQuery("#tipoBancarizado").prop("hidden",true);
+		    	  jQuery("#tipoBancarizado").hide();
 		    	  limpiarFormulario();
 		    	  jQuery("#clabe").prop("required",false);
 		    	  jQuery("#cveBanco").prop("required",false);
 		       }
 		  }
+		  else{ // procedimiento == "crear"
+			// Alta
+			jQuery("#tipoBancarizado").hide();
+		   
+		  } 
 	}
 	
 	

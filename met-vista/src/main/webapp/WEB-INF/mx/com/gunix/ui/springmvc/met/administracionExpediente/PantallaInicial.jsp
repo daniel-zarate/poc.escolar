@@ -18,6 +18,12 @@
 <script src="/met-vista/js/jlayout/jquery.layout-latest.js" type="text/javascript"></script>
 <script src="/met-vista/js/commons.js" type="text/javascript"></script>
 
+<script src="/met-vista/static/js/jquery-ui/jquery.ui.widget.js"></script>
+<script src="/met-vista/static/js/fileupload/jquery.iframe-transport.js"></script>
+<script src="/met-vista/static/js/fileupload/jquery.fileupload.js"></script>
+
+<script src="/met-vista/js/administracionExpediente/v1/jquery.get-input-type.min.js"></script>
+
 <script type="text/javascript">
 			var ramoError = "errorRamo"
 			var urError = "Error Ur"
@@ -51,7 +57,7 @@
 					<div class="small-8 columns">
 						<div class="large-12 columns" id="CombosAnidadosRamoUr">
 							<div class="medium-4 columns ">
-								<label>CURP</label> <input name="curp" id="curpGlobal" class="sep-text-medium" type="text" placeholder="CURP" 	value="" disabled="disabled">
+								<label>CURP</label> <input name="curpEncabezado" id="curpGlobal" class="sep-text-medium" type="text" placeholder="CURP" 	value="" disabled="disabled">
 							</div>
 							<div class="medium-4 columns ">
 								<label>RAMO <font color="red">*</font></label>
@@ -153,28 +159,29 @@
 								<jsp:include page="PantallaInicialDatosPersonales.jsp" ></jsp:include>
 						</div>
 						<div class="content large-12 columns" id="panelDatosGenerales">
-							<p>
+							<
+							p>
 								<jsp:include page="PantallaInicialDatosGenerales.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelEsquemaPago">
 							<p>
-								<%--<jsp:include page="PantallaInicialEsquemaPago.jsp" ></jsp:include>--%>
+								<jsp:include page="PantallaInicialEsquemaPago.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelTrayectoriaLaboral">
 							<p>
-								<%--<jsp:include page="PantallaInicialTrayectoriaLaboral.jsp" ></jsp:include>--%>
+								<jsp:include page="PantallaInicialTrayectoriaLaboral.jsp" ></jsp:include>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelFormacionAcademica">
 							<p>
-								<%--<jsp:include page="PantallaInicialFormacionAcademica.jsp" ></jsp:include>--%>
+<%-- 								<jsp:include page="PantallaInicialFormacionAcademica.jsp" ></jsp:include> --%>
 							</p>
 						</div>
 						<div class="content large-12 columns" id="panelDependientesFamiliares">
 							<p>
-								<%--<jsp:include page="PantallaInicialDependientesFamiliares.jsp" ></jsp:include>--%>
+<%-- 								<jsp:include page="PantallaInicialDependientesFamiliares.jsp" ></jsp:include> --%>
 							</p>
 						</div>
 					</div>
@@ -240,6 +247,7 @@
 			
 			console.log("ejecutando foundation al final")
 			$(document).foundation();
+			
 			Foundation.libs.abide.validate($( ":input" ), {type:''})
 		})
 		

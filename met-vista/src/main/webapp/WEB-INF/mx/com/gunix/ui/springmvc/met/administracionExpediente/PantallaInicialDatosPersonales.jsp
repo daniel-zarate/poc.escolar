@@ -26,7 +26,10 @@
 		</script>
 <%-- <link rel="stylesheet" href="${resource(dir: 'css/noty', file: 'noty.css',plugin:'in-sane-fwk')}" /> --%>
 <%-- <script src="${resource(dir: 'js/api', file: 'RestClientURI.js',plugin:'in-sane-fwk')}" type="text/javascript"></script> --%>
-<!-- <script src="/met-vista/js/administracionExpediente/v1/pantallaInicialDatosPersonales.js" type="text/javascript"></script> -->
+<script src="/met-vista/js/administracionExpediente/v1/pantallaInicialDatosPersonales.js" type="text/javascript"></script>
+<script src="/met-vista/js/administracionExpediente/v1/cargaArchivosDatosPersonales.js" type="text/javascript"></script>
+
+
 
 </head>
 <body>
@@ -98,13 +101,15 @@
 			<label>
 			<spring:message code="administracionExpediente.v1.view.label.datosPersonales.curp"  />
 			<font color="red">*</font></label> 
-			<input ${curp?'disabled':''} id="curp" name="curp" type="text" class="sep-text-medium" placeholder=<spring:message code="administracionExpediente.v1.view.label.datosPersonales.curp"/> required value="${curp}" maxlength="18"  /> 
+<%-- 			<input ${curp?'disabled':''} id="curp" name="curp" type="text" class="sep-text-medium" placeholder=<spring:message code="administracionExpediente.v1.view.label.datosPersonales.curp"/> required value="${curp}" maxlength="18"  />  --%>
+				<form:input id="curp" name="curp" path="curp" type="text" class="sep-text-medium" placeholder="" required="required" maxlength="18" value="${curp}"  />
 			<small class="error"><spring:message code="ER-044012"  /></small>
 		</div>
 		<!-- ---------------- RFC ---------------- -->
 		<div class="small-4 columns">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.rfc"  /><font color="red">*</font></label> 
-				<input name="rfc" id="rfcUsuario" type="text" class="sep-text-medium" placeholder="" required value="${rfc}" maxlength="13"  /> 
+<%-- 				<input name="rfc" id="rfcUsuario" type="text" class="sep-text-medium" placeholder="" required value="${rfc}" maxlength="13"  />  --%>
+					<form:input name="rfc" id="rfcUsuario" path="rfc" type="text" class="sep-text-medium" placeholder="" required="required" value="${rfc}" maxlength="13"  />
 				<small class="error">
 						<spring:message code="administracionExpediente.v1.view.label.datosPersonales.rfc.requerido"  />
 				</small>
@@ -231,58 +236,114 @@
 						  Grid que permite dibujar din?micamente, los archivos que
 						  deber?n ser cargados para este m?dulo.
 						-->
-<!-- 	<div class="row"> -->
-<%-- 		<label>&nbsp;&nbsp;&nbsp;<spring:message code="administracionExpediente.v1.view.label.datosPersonales.documentacion"  /><font color="red">*</font></label> --%>
-<!-- 		<fieldset class="sep-fieldset"> -->
-<!-- 			<div id="gridFiles" class="large-12 columns" style="overflow-y: scroll; max-height: 150px">	 -->
-<%-- 			<g:each in="${lstDocumentosDatosPersonales}" var="item" status="i"> --%>
-<%-- 					<g:if test="${i%3 == 0}"> --%>
-<!-- 					<div class="small-12 columns"> -->
-<!-- 					</g:if> -->
-<!-- 						<div class="small-4 columns"> -->
-<!-- 							<div class="row collapse"> -->
-<!-- 								<div class="small-3 columns"> -->
-<%-- 									<img alt=""	src="images/administracionExpediente/v1/documentoNoCargado.png"	id="img${item.cveDocumento.trim()}" class="imgDocumento"> --%>
-<!-- 								</div> -->
-<!-- 								<div class="small-9 columns"> -->
-<%-- 									<g:if test="${!datosPersonalesFile}"> --%>
-<%-- 										<label class="ExpedienteDatosPersonales" id="${item.cveDocumento.trim()}" name="${item.requerido}" alt="0"> ${item.documento.trim()}</label> --%>
-<!-- 									</g:if> -->
-<%-- 									<g:if test="${datosPersonalesFile}"> --%>
-<%-- 										<g:set var="flag" value="${0}" /> --%>
-<%-- 										<g:each in="${datosPersonalesFile}" var="filePreview"> --%>
-<%-- 											<g:if test="${filePreview.value.trim().split('_')[1].split('\\.')[0] == item.cveDocumento.trim()}"> --%>
-<%-- 												<insane:insanePreviewMetFile idFile="${filePreview.key}" name="${item.documento}" />  --%>
-<%-- 												<g:set var="flag" value="${1}" /> --%>
-<%-- 												<label class="ExpedienteDatosPersonales" style="display: none" id="${item.cveDocumento.trim()}"	name="${item.requerido}" alt="0">${item.documento.trim()}</label> --%>
-<!-- 											</g:if> -->
-<!-- 										</g:each> -->
-<%-- 										<g:if test="${flag == 0}"> --%>
-<%-- 											<label class="ExpedienteDatosPersonales" id="${item.cveDocumento.trim()}" name="${item.requerido}" alt="0"> ${item.documento.trim()}</label> --%>
-<!-- 										</g:if> -->
-<!-- 									</g:if> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<%-- 					<g:if test="${i%3 == 2}" > --%>
-<!-- 					</div> -->
-<!-- 					</g:if> -->
-<!-- 				</g:each> -->
-<!-- 				<div class="small-4 columns"> -->
-<!-- 					<div class="row collapse"> -->
-<!-- 						<div class="small-3 columns"></div> -->
-<!-- 						<div class="small-9 columns"></div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="small-4 columns"> -->
-<!-- 					<div class="row collapse"> -->
-<!-- 						<div class="small-3 columns"></div> -->
-<!-- 						<div class="small-9 columns"></div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</fieldset> -->
-<!-- 	</div> -->
+	<div class="row">
+		<label>&nbsp;&nbsp;&nbsp;Documentación<font color="red">*</font></label>
+		<fieldset class="sep-fieldset">
+			<div id="gridFiles" class="large-12 columns" style="overflow-y: scroll; max-height: 150px; font-size: 0.4rem;">	
+			
+					
+					<div class="small-12 columns">
+					
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgIO" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="IO" name="T" alt="0"> Identificación Oficial</label>
+								</div>
+							</div>
+						</div>
+				
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgRFC" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">					
+										<label class="ExpedienteDatosPersonales" id="RFC" name="T" alt="0"> RFC</label>
+								</div>
+							</div>
+						</div>
+				
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgCURP" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="CURP" name="T" alt="0"> CURP</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="small-12 columns">
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgAN" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="AN" name="T" alt="0"> Acta de Nacimiento</label>
+								</div>
+							</div>
+						</div>
+					
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgCM" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="CM" name="F" alt="0"> Cartilla Militar</label>
+								</div>
+							</div>
+						</div>
+				
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgCN" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="CN" name="F" alt="0"> Carta de Naturalización</label>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					
+				
+					
+					<div class="small-12 columns">
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns">
+									<img alt="" src="/met-vista/images/administracionExpediente/v1/documentoNoCargado.png" id="imgFM" class="imgDocumento">
+								</div>
+								<div class="small-9 columns">
+										<label class="ExpedienteDatosPersonales" id="FM" name="F" alt="0"> Forma Migratoria</label>
+								</div>
+							</div>
+						</div>
+					
+				
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns"></div>
+								<div class="small-9 columns"></div>
+							</div>
+						</div>
+						<div class="small-4 columns">
+							<div class="row collapse">
+								<div class="small-3 columns"></div>
+								<div class="small-9 columns"></div>
+							</div>
+						</div>
+					</div>
+		</div></fieldset>
+	</div>
 
 	<div class="row">
 
@@ -290,7 +351,7 @@
 <%--		<g:if test="${idOperacion == 'modificar' || idOperacion == 'crear'  || idOperacion == 'seguimiento'}">	--%>
 			<div class="small-12 columns" id="cargaArchivoDatosPersonales">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.documentosAdjuntos"	 /></label>
-				<input type="file"  value="${datosPersonalesFile}" id="datosPersonalesFile" name="datosPersonalesFile" />
+				<input type="file"  value="${datosPersonalesFile}" id="datosPersonalesFile" name="datosPersonalesFile" data-url="controller/upload" />
 			</div>
 <%--		</g:if> --%>
 <%--	</g:if>--%>

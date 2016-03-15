@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -51,6 +52,8 @@
 	var institutoUPN = '<spring:message code="administracionExpedinete.v1.view.formacionAcademica.institucion.upn"  javaScriptEscape="true" />';
 	var seleccioneOpcion = '<spring:message code="met.administracionExpediente.v1.view.label.selectDefault" javaScriptEscape="true" />';
 </script>
+<script src="/met-vista/js/administracionExpediente/v1/cargaArchivosFormacionAcademica.js" type="text/javascript"></script>
+
 <%-- <link rel="stylesheet" href="${resource(dir: 'css/noty', file: 'noty.css',plugin:'in-sane-fwk')}"></link> --%>
 <title>Formacion Academica</title>
 
@@ -92,14 +95,20 @@
 						<div class="medium-4 columns">
 							<label align="left">
 							<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.nivel" /> <font color="red">*</font></label> 
-							<select class="formacionAcademica sep-text-medium left" id="nivelAcademico" tabindex="1">
+							<select class="formacionAcademica sep-text-medium left" id="nivelAcademico" tabindex="1" name="nivelAcademico">
 								<option value="">
-									<spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option>
+									<spring:message code="met.administracionExpediente.v1.view.label.selectDefault" />
+								</option>
+								<option value="0">
+									Primaria
+								</option>
+								
 <%-- 								<g:each in="${niveles}" var="nivel"> --%>
 <%-- 									<option value="${nivel.id}"> --%>
 <%-- 										${nivel.claveDescripcion} --%>
 <!-- 									</option> -->
 <!-- 								</g:each> -->
+			
 							</select>
 							<small class="error">
 								<spring:message code="ER-044008" arguments='<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.nivel" />' />
@@ -112,6 +121,9 @@
 							<select class="formacionAcademica sep-text-medium left" id="anosEstudios" tabindex="1" name = "anosEstudios" >
 								<option value="">
 									<spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  />
+								</option>
+								<option value="1">
+									1
 								</option>
 							</select>
 						</div>
@@ -129,6 +141,10 @@
 									<option value="">
 										<spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  />
 									</option>
+									<option value="2">
+										Otras
+									</option>
+									
 <%-- 									<g:each in="${institucionesUPN}" var="institucion"> --%>
 <%-- 										<option value="${institucion.id}"> --%>
 <%-- 											${institucion.descripcion} --%>
@@ -152,9 +168,12 @@
 							<label align="left" id="labelCarrera">
 								<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.carrera"  /><font color="red" id="carreraFA">*</font>
 							</label> 
-							<select class="formacionAcademica sep-text-medium left" id="carrera" tabindex="5" name="labelCarrera" >
+							<select class="formacionAcademica sep-text-medium left" id="carrera" tabindex="5" name="carrera" >
 								<option value="">
 									<spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  />
+								</option>
+								<option value="3">
+									Primaria
 								</option>
 <%-- 								<g:each in="${carrerasUPN}" var="carrera"> --%>
 <%-- 									<option value="${carrera.id}"> --%>
@@ -167,11 +186,14 @@
 							<label align="left">
 								<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.documento" /> 
 							<font color="red">*</font></label> 
-							<select
-								class="formacionAcademica sep-text-medium left"  id="documento" tabindex="5">
+							<select class="formacionAcademica sep-text-medium left"  id="documento" tabindex="5" name="documento">
 								<option value="">
 									<spring:message code="met.administracionExpediente.v1.view.label.selectDefault" />
 								</option>
+								<option value="4">
+									Boleta
+								</option>
+								
 <%-- 								<g:each in="${documentos}" var="documento"> --%>
 <%-- 									<option value="${documento.id}"> --%>
 <%-- 										${documento.descripcion} --%>
@@ -189,7 +211,7 @@
 							<label align="left">
 									<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.cedulaProfesional" /> <font color="red">*</font>
 							</label>
-									<input id="cedulaProfecional" class="formacionAcademica sep-text-medium left" type="text" name="cedulaProfecional" maxlength="10" type="text" pattern="(^(([0-9]){0,10})$)"/>
+									<input id="cedulaProfesional" class="formacionAcademica sep-text-medium left" type="text" name="cedulaProfesional" maxlength="10" type="text" pattern="(^(([0-9]){0,10})$)"/>
 							<small class="error">
 								<spring:message code="ER-cedula-numerico" arguments="" />
 							</small>
@@ -200,7 +222,10 @@
 								<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.documentoAdjunto" />
 								<font color="red" id="documentoFormacionAcademica">*</font></label>
 							</div>
-							<div>
+							<div id="formacionAcademicaFileContainer">
+								<input type="file"  id="formacionAcademicaFile" name="formacionAcademicaFile" data-url="arrayData/upload" class="formacionAcademica" />
+								<input type="hidden"  id="formacionAcademicaDocumentacion" name="formacionAcademicaDocumentacion" class="formacionAcademica" />
+								<div id="formacionAcademicaFileNameText"></div>
 <%-- 							<g:if test="${formacionAcademicaFile ==null|| formacionAcademicaFile == '' || formacionAcademicaFile == [:]}">	 --%>
 <!-- 								<insane:uploadMetFileRow id="formacionAcademicaFile" tabindex="6"></insane:uploadMetFileRow> -->
 <!-- 							</g:if> -->
@@ -219,45 +244,45 @@
 						<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.nivel" />
 					</a>
 					<div style="padding: 0rem">
-						<table class="large-12 columns" id="tablaDatos" style="border: 1px solid rgb(187, 187, 187);">
+						<table class="large-12 columns" id="tableData-formacionAcademica" style="border: 1px solid rgb(187, 187, 187);">
 							<tr>
-								<th>
+								<th id="tableData-nivelAcademico">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpediente.v1.view.formacionAcademica.label.nivelTable' />" >
 										<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.nivelTable" 	 />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-anosEstudios">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpedinete.v1.view.formacionAcademica.label.anos' />">
 										<spring:message code="administracionExpedinete.v1.view.formacionAcademica.label.anos"  />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-institucion">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpedinete.v1.view.formacionAcademica.label.institucionTable' />" >
 										<spring:message code="administracionExpedinete.v1.view.formacionAcademica.label.institucionTable" />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-carrera">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpediente.v1.view.formacionAcademica.label.carrera' />" >
 										<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.carrera" />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-documento">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpediente.v1.view.formacionAcademica.label.documento' />" >
 										<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.documento" />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-cedulaProfesional">
 									<span data-tooltip class="has-tip" title="<spring:message code='administracionExpediente.v1.view.formacionAcademica.label.cedula' />" >
 										<spring:message code="administracionExpediente.v1.view.formacionAcademica.label.cedula" />
 									</span>
 								</th>
-								<th>
+								<th id="tableData-formacionAcademicaDocumentacion">
 									<span data-tooltip class="has-tip" 	title="<spring:message code='administracionExpedinete.v1.view.formacionAcademica.label.documentacion' />" >
 										<spring:message code="administracionExpedinete.v1.view.formacionAcademica.label.documentacion"  />
 									</span>
 								</th>
 <%-- 							<g:if test="${(perfilName == 'Captura_UR' & idOperacion != 'consultar')  }"> --%>
-									<th id="columnaEliminarFormacionAcademica">Borrar</th>
+									<th id="tableData-borrarFormacionAcademica">Borrar</th>
 <!-- 							</g:if>								 -->
 							</tr>
 						</table>

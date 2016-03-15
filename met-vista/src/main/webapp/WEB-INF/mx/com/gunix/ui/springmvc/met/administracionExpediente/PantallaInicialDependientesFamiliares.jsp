@@ -20,7 +20,9 @@
 	        var ecurpIgualTrabajador = "<spring:message code='administracionExpediente.v1.view.dependientesfamiliares.error.curp.igualATrabajador' javaScriptEscape='true'/>";
         </script>
 <%--<script src="${resource(dir: 'js/', file: 'commons.js')}"></script>--%>
-<%-- <script src="${resource(dir: 'js/administracionExpediente/v1/', file: 'PantallaInicialDependientesFamiliares.js')}" type="text/javascript"></script> --%>
+<script src="/met-vista/js/administracionExpediente/v1/PantallaInicialDependientesFamiliares.js" type="text/javascript"></script>
+<script src="/met-vista/js/administracionExpediente/v1/cargaArchivosDependientesFamiliares.js" type="text/javascript"></script>
+
 </head>
 <body>
 	<div class="row"> 
@@ -66,10 +68,8 @@
 	                    <input type="text" name="fechaNacimientoDependientesFamiliares" id="fechaNacimientoDependientesFamiliares" class="dependientesFamiliares sep-text-medium left" tabindex="1" />
 	             	</div>
 	             	<div class="medium-2 columns">
-	             	<label><spring:message
-						code="administracionExpediente.v1.view.dependientesfamiliares.label.edad"  /><font color="red"></font></label>
-	                      <input type="text" value="" id="edadDependientesFamiliares" name="edadDependientesFamiliares" class="dependientesFamiliares soloNumeros sep-text-medium left" maxlength="3" tabindex="1"
-	                       <insane:insaneInput type="text" name="edadDependientesFamiliares"/>/>
+	             	<label><spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.edad"  /><font color="red"></font></label>
+	                      <input type="text" value="" id="edadDependientesFamiliares" name="edadDependientesFamiliares" class="dependientesFamiliares soloNumeros sep-text-medium left" maxlength="3" tabindex="1" /> 
 	             	</div>
 	             	<div class="medium-2 columns">
 	             	<label><spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.sexo"  /><font color="red">*</font></label>
@@ -77,7 +77,9 @@
 <%-- 						  noSelection="${['':message(code:"met.administracionExpediente.v1.view.label.selectDefault",locale:"es_MX")]}" from='${sexo}'  --%>
 <!--                        	  optionKey="id" optionValue="descripcion" /> -->
 							 <select class="dependientesFamiliares sep-text-medium left" id="sexoDependientesFamiliares" name="sexoDep" tabindex="0" >
-	                      		<option value="">	<spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  /></option>
+	                      		<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  /></option>
+	                      		<option value="2">Masculino</option>
+	                      		<option value="3" selected="selected">Femenino</option>
 							</select>
 	             	</div>
 	         </div>	
@@ -86,6 +88,8 @@
                      <label><spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.parentesco"  /><font color="red">*</font></label>
                       <select class="dependientesFamiliares sep-text-medium left" id="parentescoDependientesFamiliares" name="parentescoDependientesFamiliares" tabindex="0" >
 	                      <option value="">	<spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  /></option>
+	                      <option value="4">Hijo</option>
+	                      <option value="5" selected="selected">Hija</option>
 <%-- 						<g:each in="${parentesco}" var="item"> --%>
 <%-- 							<option value="${item.id}"> --%>
 <%-- 								${item.descripcion} --%>
@@ -102,6 +106,7 @@
 <!--                        optionKey="id" optionValue="descripcion"/> -->
 						<select class="dependientesFamiliares sep-text-medium left" id="nivelDependientesFamiliares" name="nivelDependientesFamiliares" tabindex="0" >
 	                    	<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  /></option>
+	                    	<option value="0" selected="selected">Primaria</option>
 						</select>
 
                  </div>
@@ -125,6 +130,7 @@
 
 						<select class="dependientesFamiliares sep-text-medium left" id="gradoDependientesFamiliares" name="gradoDependientesFamiliares" >
 	                    	<option value=""><spring:message code="met.administracionExpediente.v1.view.label.selectDefault"  /></option>
+	                    	<option value="1" selected="selected">Primero</option>
 						</select>
 
                  </div>
@@ -137,7 +143,9 @@
 <%--                 		<label><spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.documentos.adjuntos"  /></label> --%>
 <!--                  	   <insane:uploadMetFileRow id="dependientesFamiliaresFile" /> -->
 <!--                  	</g:if> -->
-						<input type="file" id="dependientesFamiliaresFile" name="dependientesFamiliaresFile" >
+						<input type="file"  id="dependientesFamiliaresFile" name="dependientesFamiliaresFile" data-url="arrayData/upload" class="dependientesFamiliares" />
+						<input type="hidden"  id="dependientesFamiliaresDocumentacion" name="dependientesFamiliaresDocumentacion" class="dependientesFamiliares" />
+						<div id="dependientesFamiliaresFileNameText"></div>
                 	</div>
                 	
                 	<div class="medium-4 columns" >
@@ -158,9 +166,10 @@
 <%-- 								* Adjuntar ${item.documento} en la secci&oacute;n: Documentos adjuntos. --%>
 <!-- 							</div> -->
 <!-- 					</g:each> -->
-					<div class="DocumentItem" id=${item.id} hidden="true" style="color:red;"> 
-								* Adjuntar ${item.documento} en la secci&oacute;n: Documentos adjuntos
-					</div>
+<!-- 						Error de no cargar archivo -->
+<!-- 					<div class="DocumentItem" id=${item.id} hidden="true" style="color:red;">  -->
+<%-- 								* Adjuntar ${item.documento} en la secci&oacute;n: Documentos adjuntos --%>
+<!-- 					</div> -->
       			</div>
       			
       			
@@ -171,39 +180,39 @@
             <a style="cursor: default; background: #e3e3e3" align="left"><spring:message
 						code="administracionExpediente.v1.view.dependientesfamiliares.label.dependientesfamiliaresTable"  /></a>
              <div class="content active" style="padding: 0rem">       
-                <table class="large-12 columns" id="tablaDatosDependientesFamiliares" style="border: 1px solid rgb(187, 187, 187);">
+                <table class="large-12 columns" id="tableData-dependientesFamiliares" style="border: 1px solid rgb(187, 187, 187);">
                     <tr>
-                        <th>
+                        <th id="tableData-curpDependientesFamiliares">
                         <span data-tooltip class="has-tip" title=<spring:message code='administracionExpediente.v1.view.dependientesfamiliares.label.curp' />>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.curp"  /></span>
 						</th>
                         
-                        <th>
+                        <th id="tableData-primerApellidoDependientesFamiliares">
                         <span data-tooltip class="has-tip" title='<spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.primerapellido" />'>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.primerapellido"  /></span>
 						</th>
 						
-						<th>
+						<th id="tableData-segundoApellidoDependientesFamiliares">
                         <span data-tooltip class="has-tip" title='<spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.segundoapellido" />'>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.segundoapellido"  /></span>
 						</th>
 						
-						<th>
+						<th id="tableData-nombreDependientesFamiliares">
                         <span data-tooltip class="has-tip" title=<spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.nombre" />>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.nombre"  /></span>
 						</th>
                          
-                        <th>
+                        <th id="tableData-parentescoDependientesFamiliares">
                         <span data-tooltip class="has-tip" title=<spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.parentesco" />>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.parentesco"  /></span>
 						</th>
 						
-						<th>
+						<th id="tableData-dependientesFamiliaresDocumentacion">
                         <span data-tooltip class="has-tip" title=<spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.documentos" />>
                         <spring:message code="administracionExpediente.v1.view.dependientesfamiliares.label.documentos"  /></span>
 						</th> 
 <%-- 					  		<g:if test="${(perfilName == 'Captura_UR' & idOperacion != 'consultar')  }"> --%>
-						<th id="columnaEliminarDependientesFamiliares">Eliminar</th>
+						<th id="tableData-borrarDependientesFamiliares">Eliminar</th>
 <!-- 					 	 	</g:if>	 -->
                      </tr>
                      

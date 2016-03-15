@@ -9,9 +9,9 @@ jQuery(document).ready(function() {
 	
 	listaCodigosDependientesFamiliares= jQuery("#codigoArchivosDependientesFamiliares").val();
 	
-	mapaParentescoDocumento = jQuery.parseJSON(jQuery("#mapaParentescoDocumento").val().toString());
+	//mapaParentescoDocumento = jQuery.parseJSON(jQuery("#mapaParentescoDocumento").val().toString());
 	
-	generarCombosAnidados("nivelGrado");
+	//generarCombosAnidados("nivelGrado");
 	
 	jQuery(".soloNumeros").keydown(function (event) {
 	    
@@ -58,15 +58,15 @@ jQuery(document).ready(function() {
 	/*
 	 * 02/07/2015
 	 * Capturar el evento del 'SELECT' parentezco para sugerir al usuario el 
-	 * 'documento adjunto' que deberá cargar.
+	 * 'documento adjunto' que deberï¿½ cargar.
 	 * */
 	jQuery("#parentescoDependientesFamiliares").on('change', function() {
 		var idParentezco = jQuery("#parentescoDependientesFamiliares").val();
-		// Ocultar la descripción actual del documento que se debe adjuntar.
+		// Ocultar la descripciï¿½n actual del documento que se debe adjuntar.
 		jQuery(".DocumentItem").each(function(){
 			jQuery("#"+this.id).hide();
 		});
-		// Mostrar la nueva descripción del documento que se debe adjuntar.
+		// Mostrar la nueva descripciï¿½n del documento que se debe adjuntar.
 		jQuery("#"+idParentezco).show();
 	});
 	
@@ -82,14 +82,14 @@ jQuery(document).ready(function() {
 			  5:'archivosCargados',
 			  6:'botonEliminarRegistro'};
 
-	insaneAdn('dependientesFamiliares','tablaDatosDependientesFamiliares',mapaColumnas, 'listaMaestraDependientesFamiliares',"dependientesFamiliaresFile");
+	//insaneAdn('dependientesFamiliares','tablaDatosDependientesFamiliares',mapaColumnas, 'listaMaestraDependientesFamiliares',"dependientesFamiliaresFile");
 	
 	var listaDependientesFamiliares = jQuery("#listaDependientesFamiliares").val();
 	
-	if(listaDependientesFamiliares != ""){
-		jsonDatos = jQuery.parseJSON(listaDependientesFamiliares);
-		cargaTablaConsultaModificacion(jsonDatos, mapaColumnas, 'listaMaestraDependientesFamiliares', 'tablaDatosDependientesFamiliares', 'dependientesFamiliares',"dependientesFamiliaresFile");
-	}	
+//	if(listaDependientesFamiliares != ""){
+//		jsonDatos = jQuery.parseJSON(listaDependientesFamiliares);
+//		cargaTablaConsultaModificacion(jsonDatos, mapaColumnas, 'listaMaestraDependientesFamiliares', 'tablaDatosDependientesFamiliares', 'dependientesFamiliares',"dependientesFamiliaresFile");
+//	}	
 	
 
 	operacionDependientes = jQuery("#operacionDependientes").val();

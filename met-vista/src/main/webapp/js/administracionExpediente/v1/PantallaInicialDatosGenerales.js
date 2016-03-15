@@ -2,15 +2,15 @@
  * 
  */
 
-jQuery("#codPostal").bind('keyup',function(){
-		var cpExistente = this.value
-		if(cpExistente!=null && cpExistente!=undefined){
-			var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: cpExistente , codigoPostal1: cpExistente}}};		
-			var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
-			request.call();
-
-		}
-});
+//jQuery("#codPostal").bind('keyup',function(){
+//		var cpExistente = this.value
+//		if(cpExistente!=null && cpExistente!=undefined){
+//			var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: cpExistente , codigoPostal1: cpExistente}}};		
+//			var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
+//			request.call();
+//
+//		}
+//});
 
 jQuery(document).ready(function() {
 	
@@ -21,13 +21,12 @@ jQuery(document).ready(function() {
 //		});
 //	});
 	
-	jQuery("#mapDoctosDatosGenerales").on("change",function(){
-		//jQuery('#mapDoctosDatosGeneralesMet').val('')
-		jQuery("#documentoCD" ).attr("src","images/administracionExpediente/v1/documentoNoCargado.png");
-		uploadSpecificMetFile(this.id, renderDatosGenerales, 'bla')
-	});
+//	jQuery("#mapDoctosDatosGenerales").on("change",function(){
+//		jQuery("#documentoCD" ).attr("src","images/administracionExpediente/v1/documentoNoCargado.png");
+//		uploadSpecificMetFile(this.id, renderDatosGenerales, 'bla')
+//	});
 
-	//Pantalla según idOperacion
+	//Pantalla segï¿½n idOperacion
 	var operacion = jQuery("#idOperacion").val();
 	if(operacion == "crear"){//crear
 		jQuery("#calle").prop("required", true);
@@ -54,41 +53,27 @@ jQuery(document).ready(function() {
 		jQuery("#municipioCombo").prop("required", true);
 	}	
 
-	//llenado de datos según código postal
-//	jQuery("#codPostal").change(function() {
-//		if(jQuery("#codPostal").attr("data-invalid")!= null || jQuery("#codPostal").val().length<5){
-//			jQuery("#coloniaCombo").remove()
-//			return
-//		}
-//		var json = {data:{uri:"/services/PRX_SD_CodigoPostalService/getPorClave",form:{codigoPostal: this.value}}};
-//		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
-//		request.call();
-//	});
+
 	
-	
-	//jQuery("#codPostal").keyup();
 	jQuery("#codPostal").trigger("keyup");
-//	jQuery('#codPostal').keyup(codigoPostalChange);
-	//jQuery("#codPostal").change(codigoPostalChange);
-	
-	//renderizacón de archivos
+
+	//renderizacï¿½n de archivos
 	var mapaArchivos = jQuery("#mapDoctosDatosPersonales").val();
 	
 	//Se llenan los combos de colonia, entidad y municipio con la info cargada si la hay
-	
 
 	
 	// renderizar los documentos que ya hayan sido cargados.
-	if(jQuery("#doctosCargadosDatosGenerales").val()){
-
-		var valueHidden = jQuery("#doctosCargadosDatosGenerales").val();			 
-		var lista = jQuery.parseJSON(valueHidden);
-
-		jQuery.each(lista, function(k,v){
-			var cveDocumento = v.substring(v.indexOf('_') + 1, v.indexOf('.')).toUpperCase();
-			jQuery("#documento" + cveDocumento).attr("src","images/administracionExpediente/v1/documentoCargado.png");
-		});
-	}
+//	if(jQuery("#doctosCargadosDatosGenerales").val()){
+//
+//		var valueHidden = jQuery("#doctosCargadosDatosGenerales").val();			 
+//		var lista = jQuery.parseJSON(valueHidden);
+//
+//		jQuery.each(lista, function(k,v){
+//			var cveDocumento = v.substring(v.indexOf('_') + 1, v.indexOf('.')).toUpperCase();
+//			jQuery("#documento" + cveDocumento).attr("src","images/administracionExpediente/v1/documentoCargado.png");
+//		});
+//	}
 	
 	
 	
@@ -119,160 +104,160 @@ jQuery(document).ready(function() {
 	
 });
 
-function codigoPostalChange(){
-	if(jQuery("#codPostal").attr("data-invalid")!= null || jQuery("#codPostal").val().length<5){
-		jQuery("#coloniaCombo option:gt(0)").remove()
-		jQuery("#entidadCombo option:gt(0)").remove()
-		jQuery("#municipioCombo option:gt(0)").remove()
-		return
-	}
+//function codigoPostalChange(){
+//	if(jQuery("#codPostal").attr("data-invalid")!= null || jQuery("#codPostal").val().length<5){
+//		jQuery("#coloniaCombo option:gt(0)").remove()
+//		jQuery("#entidadCombo option:gt(0)").remove()
+//		jQuery("#municipioCombo option:gt(0)").remove()
+//		return
+//	}
+//
+//	
+//	if(jQuery("#codPostal").val().length == 5){
+//		var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: this.value , codigoPostal1: this.value}}};
+//		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
+//		request.call();
+//	}
+//}
 
-	
-	if(jQuery("#codPostal").val().length == 5){
-		var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: this.value , codigoPostal1: this.value}}};
-		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
-		request.call();
-	}
-}
+//function exitoCodigoPostal(data){
+//
+//	if(data.response.data.codigoPostalService==""){
+//		jQuery("#coloniaCombo option:gt(0)").remove()
+//		jQuery("#entidadCombo option:gt(0)").remove()
+//		jQuery("#municipioCombo option:gt(0)").remove()
+//		return
+//	}
+//
+//	var colonias = data.response.data.codigoPostalService.codigoPostalGetPorClave
+//
+//	var coloniasArray = new Array();
+//	if(colonias.cveColonia != undefined || colonias.cveColonia != null){
+//		coloniasArray.push(colonias);
+//	}else{
+//		coloniasArray = colonias;
+//	}
+//	
+//	var codigoPostal = ""
+//	for (i=0;i<coloniasArray.length;i++){ 		
+//		if(coloniasArray[i].codigoPostal != "00000"){
+//			codigoPostal = coloniasArray[i].codigoPostal
+//			break;
+//		}			
+//	}
+//
+//	//llenamos colonias
+//	//var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniasDatosGenerales",form:{codigoPostal: coloniasArray[0].codigoPostal, codigoPostal1: coloniasArray[0].codigoPostal}}};
+//	var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniasDatosGenerales",form:{codigoPostal: codigoPostal, codigoPostal1: codigoPostal}}};
+//	var request = new RestClientURI('POST',JSON.stringify(json), llenaComboColonia, function(){jQuery("#coloniaCombo option:gt(0)").remove();jQuery("#entidadCombo option:gt(0)").remove();jQuery("#municipioCombo option:gt(0)").remove()}); 
+//	request.call();
+//}
 
-function exitoCodigoPostal(data){
-
-	if(data.response.data.codigoPostalService==""){
-		jQuery("#coloniaCombo option:gt(0)").remove()
-		jQuery("#entidadCombo option:gt(0)").remove()
-		jQuery("#municipioCombo option:gt(0)").remove()
-		return
-	}
-
-	var colonias = data.response.data.codigoPostalService.codigoPostalGetPorClave
-
-	var coloniasArray = new Array();
-	if(colonias.cveColonia != undefined || colonias.cveColonia != null){
-		coloniasArray.push(colonias);
-	}else{
-		coloniasArray = colonias;
-	}
-	
-	var codigoPostal = ""
-	for (i=0;i<coloniasArray.length;i++){ 		
-		if(coloniasArray[i].codigoPostal != "00000"){
-			codigoPostal = coloniasArray[i].codigoPostal
-			break;
-		}			
-	}
-
-	//llenamos colonias
-	//var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniasDatosGenerales",form:{codigoPostal: coloniasArray[0].codigoPostal, codigoPostal1: coloniasArray[0].codigoPostal}}};
-	var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniasDatosGenerales",form:{codigoPostal: codigoPostal, codigoPostal1: codigoPostal}}};
-	var request = new RestClientURI('POST',JSON.stringify(json), llenaComboColonia, function(){jQuery("#coloniaCombo option:gt(0)").remove();jQuery("#entidadCombo option:gt(0)").remove();jQuery("#municipioCombo option:gt(0)").remove()}); 
-	request.call();
-}
-
-function llenaComboColonia(data){
-	var colonias = data.response.data.coloniaService.getColoniasDatosGenerales;
-	var coloniasArray = new Array();
-	if( colonias.cveColonia != null || colonias.cveColonia != undefined){//si accedemos a un elemento directamente es un objeto
-		coloniasArray.push(colonias);
-	}else{
-		coloniasArray = colonias;
-	}
-	//se llenan las colonias
-	var comboColonias = jQuery("#coloniaCombo");
-	jQuery("#coloniaCombo option:gt(0)").remove();
-	var comboEntidad = jQuery("#entidadCombo");
-	jQuery("#entidadCombo  option:gt(0)").remove();
-	var comboMunicipio = jQuery("#municipioCombo");
-	jQuery("#municipioCombo option:gt(0)").remove();
-
-	
-	
-	jQuery.each(coloniasArray,function(){
-		var cc = coloniaComboValue; //se trae desde el gsp
-		if(cc!=""){
-			if(this.cveColonia.trim()==cc){
-				comboColonias.append(jQuery('<option>', { value: this.cveColonia.trim(), text : this.coloniaDescripcion}).attr("selected","selected"));
-			}else{
-				comboColonias.append(jQuery("<option />").val(this.cveColonia.trim()).text(this.coloniaDescripcion));
-			}
-		}else{
-			comboColonias.append(jQuery("<option />").val(this.cveColonia.trim()).text(this.coloniaDescripcion));
-		}
-	
-	});
-	//se llena la entidad (unica para cada CP)
-
-	comboEntidad.append(jQuery("<option />").val(coloniasArray[0].cveEntidadFederativa.trim()).text(coloniasArray[0].entidadDescripcion).attr("selected","selected"));
-	comboMunicipio.append(jQuery("<option />").val(coloniasArray[0].cveMunicipio.trim()).text(coloniasArray[0].municipioDescripcion).attr("selected","selected"));
-
-}
+//function llenaComboColonia(data){
+//	var colonias = data.response.data.coloniaService.getColoniasDatosGenerales;
+//	var coloniasArray = new Array();
+//	if( colonias.cveColonia != null || colonias.cveColonia != undefined){//si accedemos a un elemento directamente es un objeto
+//		coloniasArray.push(colonias);
+//	}else{
+//		coloniasArray = colonias;
+//	}
+//	//se llenan las colonias
+//	var comboColonias = jQuery("#coloniaCombo");
+//	jQuery("#coloniaCombo option:gt(0)").remove();
+//	var comboEntidad = jQuery("#entidadCombo");
+//	jQuery("#entidadCombo  option:gt(0)").remove();
+//	var comboMunicipio = jQuery("#municipioCombo");
+//	jQuery("#municipioCombo option:gt(0)").remove();
+//
+//	
+//	
+//	jQuery.each(coloniasArray,function(){
+//		var cc = coloniaComboValue; //se trae desde el gsp
+//		if(cc!=""){
+//			if(this.cveColonia.trim()==cc){
+//				comboColonias.append(jQuery('<option>', { value: this.cveColonia.trim(), text : this.coloniaDescripcion}).attr("selected","selected"));
+//			}else{
+//				comboColonias.append(jQuery("<option />").val(this.cveColonia.trim()).text(this.coloniaDescripcion));
+//			}
+//		}else{
+//			comboColonias.append(jQuery("<option />").val(this.cveColonia.trim()).text(this.coloniaDescripcion));
+//		}
+//	
+//	});
+//	//se llena la entidad (unica para cada CP)
+//
+//	comboEntidad.append(jQuery("<option />").val(coloniasArray[0].cveEntidadFederativa.trim()).text(coloniasArray[0].entidadDescripcion).attr("selected","selected"));
+//	comboMunicipio.append(jQuery("<option />").val(coloniasArray[0].cveMunicipio.trim()).text(coloniasArray[0].municipioDescripcion).attr("selected","selected"));
+//
+//}
 
 
-function validaReglasDatosGenerales(){
-	//el mapa de errores
-	var map = {};
-	//solo se hace la validacion de archivos
-	var todosRequeridos = jQuery("#requeridosDatosGenerales").val();
-	if(todosRequeridos!="true"){
-		//map["documentosRequeridosMsg"]=documentosRequeridosMsg
-	}
-	return map;
-
-}
+//function validaReglasDatosGenerales(){
+//	//el mapa de errores
+//	var map = {};
+//	//solo se hace la validacion de archivos
+//	var todosRequeridos = jQuery("#requeridosDatosGenerales").val();
+//	if(todosRequeridos!="true"){
+//		//map["documentosRequeridosMsg"]=documentosRequeridosMsg
+//	}
+//	return map;
+//
+//}
 
 //de los archivos cargados cambia el icono de los que vengan en el listado de archivos de la pantalla
-function marcaArchivosCargados(mapa){
-	//sacamos los archivos que son requeridos
-	var d = jQuery("#documentosDatosGenerales").val();
-	var archivosTodos = jQuery.parseJSON(d);
-	var requeridos = new Array();
-	jQuery.each(archivosTodos,function(key,value){
-		if(value.requerido=="T"){
-			requeridos.push(value);
-		}
-	});
-	
-	var mapaLimpio = {};
-	jQuery.each(mapa,function(key,value){//recorremos los archivos cargados y buscamos su imagen
-		var split1 = value.split("_");
-		if(split1.length!=2){
-			jQuery("#CD_img").attr("src","images/administracionExpediente/v1/documentoError.png");
-			return
-		}
-		var rfcTrabajador = jQuery("#rfcDG").val()//verificamos que el rfc del nombre del archivo coincida
-		var idOperacion = jQuery("#idOperacion").val()
-		if(idOperacion=="modificar"){
-			if(split1[0]!=rfcTrabajador){
-				return
-			}
-		}
-		var split2 = split1[1].split(".");
-		if(split2.length!=2){
-			return
-		}
-		var claveArchivo = split2[0];
-		
-		var imagenArchivo = jQuery("#"+claveArchivo+"_img");
-		if(imagenArchivo.attr("src") != undefined){//si esta en la lista de archivos del gsp
-			var nuevoSrc = "";
-			if(imagenArchivo.attr("src").indexOf("documentoCargado")>0){
-				nuevoSrc =imagenArchivo.attr("src"); 
-			}else{
-				var na = imagenArchivo.attr("src").split("No");
-				nuevoSrc = na[0]+na[1];
-			}
-			if(!auxMapaLimpio(mapaLimpio, claveArchivo)){
-				imagenArchivo.attr("src","images/administracionExpediente/v1/documentoCargado.png");
-				mapaLimpio[key] = value; //si lo encontramos es un archivo chido y va al mapa limpio
-				auxiliarRequeridos(requeridos,claveArchivo); //si era requerido lo quita de la lista de requeridos
-			}
-		}
-		
-	});
-	if(requeridos.length == 0){//si ya están todos los requeridos fijamos en true el hidden
-		jQuery("#requeridosDatosGenerales").val("true");
-	}
-	return mapaLimpio;
-}
+//function marcaArchivosCargados(mapa){
+//	//sacamos los archivos que son requeridos
+//	var d = jQuery("#documentosDatosGenerales").val();
+//	var archivosTodos = jQuery.parseJSON(d);
+//	var requeridos = new Array();
+//	jQuery.each(archivosTodos,function(key,value){
+//		if(value.requerido=="T"){
+//			requeridos.push(value);
+//		}
+//	});
+//	
+//	var mapaLimpio = {};
+//	jQuery.each(mapa,function(key,value){//recorremos los archivos cargados y buscamos su imagen
+//		var split1 = value.split("_");
+//		if(split1.length!=2){
+//			jQuery("#CD_img").attr("src","images/administracionExpediente/v1/documentoError.png");
+//			return
+//		}
+//		var rfcTrabajador = jQuery("#rfcDG").val()//verificamos que el rfc del nombre del archivo coincida
+//		var idOperacion = jQuery("#idOperacion").val()
+//		if(idOperacion=="modificar"){
+//			if(split1[0]!=rfcTrabajador){
+//				return
+//			}
+//		}
+//		var split2 = split1[1].split(".");
+//		if(split2.length!=2){
+//			return
+//		}
+//		var claveArchivo = split2[0];
+//		
+//		var imagenArchivo = jQuery("#"+claveArchivo+"_img");
+//		if(imagenArchivo.attr("src") != undefined){//si esta en la lista de archivos del gsp
+//			var nuevoSrc = "";
+//			if(imagenArchivo.attr("src").indexOf("documentoCargado")>0){
+//				nuevoSrc =imagenArchivo.attr("src"); 
+//			}else{
+//				var na = imagenArchivo.attr("src").split("No");
+//				nuevoSrc = na[0]+na[1];
+//			}
+//			if(!auxMapaLimpio(mapaLimpio, claveArchivo)){
+//				imagenArchivo.attr("src","images/administracionExpediente/v1/documentoCargado.png");
+//				mapaLimpio[key] = value; //si lo encontramos es un archivo chido y va al mapa limpio
+//				auxiliarRequeridos(requeridos,claveArchivo); //si era requerido lo quita de la lista de requeridos
+//			}
+//		}
+//		
+//	});
+//	if(requeridos.length == 0){//si ya estï¿½n todos los requeridos fijamos en true el hidden
+//		jQuery("#requeridosDatosGenerales").val("true");
+//	}
+//	return mapaLimpio;
+//}
 
 //para que no se repitan archivos con la misma clave
 function auxMapaLimpio (mapaLimpio, clave){
@@ -375,7 +360,7 @@ function renderDatosGenerales(map){
 
 
 	if ((Object.keys(filesRequired).length) > 0){
-		/*Aún existen documentos requeridos que no se han cargado y se detiene la carga*/
+		/*Aï¿½n existen documentos requeridos que no se han cargado y se detiene la carga*/
 		jQuery("#doctoRequired").attr("value","")
 		jQuery("#doctoRequired").attr("value",false)
 	}
@@ -403,12 +388,12 @@ function obtieneNombre(nombreArchivo, separador){
 
 
 
-jQuery("#codPostal").bind('keyup',function(){
-	var cpExistente = this.value
-	if(cpExistente!=null && cpExistente!=undefined){
-		var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: cpExistente , codigoPostal1: cpExistente}}};		
-		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
-		request.call();
-
-	}
-});
+//jQuery("#codPostal").bind('keyup',function(){
+//	var cpExistente = this.value
+//	if(cpExistente!=null && cpExistente!=undefined){
+//		var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: cpExistente , codigoPostal1: cpExistente}}};		
+//		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
+//		request.call();
+//
+//	}
+//});

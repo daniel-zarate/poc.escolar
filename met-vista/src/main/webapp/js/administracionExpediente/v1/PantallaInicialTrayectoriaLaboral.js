@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
 			6:'archivosCargados',
 			7:'botonEliminarRegistro'};
 
-	insaneAdn('trayectoriaLaboral','tablaTrayectoriaLaboral',mapaColumnas, 'listaMaestraTrayectoriaLaboral',"mapDoctosTrayectoriaLaboralFile");
+	//insaneAdn('trayectoriaLaboral','tablaTrayectoriaLaboral',mapaColumnas, 'listaMaestraTrayectoriaLaboral',"mapDoctosTrayectoriaLaboralFile");
 
 	var jsonDatos;		
 	var listaTrabajadorTrayectoriaLaboral = jQuery("#listaTrabajadorTrayectoriaLaboral").val();
@@ -62,11 +62,11 @@ jQuery(document).ready(function() {
 		
 		jsonDatos = jQuery.parseJSON(listaTrabajadorTrayectoriaLaboral);
 		
-		cargaTablaConsultaModificacion(jsonDatos, mapaColumnas, 'listaMaestraTrayectoriaLaboral', 'tablaTrayectoriaLaboral', 'trayectoriaLaboral',"mapDoctosTrayectoriaLaboralFile");
+//		cargaTablaConsultaModificacion(jsonDatos, mapaColumnas, 'listaMaestraTrayectoriaLaboral', 'tablaTrayectoriaLaboral', 'trayectoriaLaboral',"mapDoctosTrayectoriaLaboralFile");
 	}	
 	
 	//REALIZA EL LLAMADO AL SERVICIO DE CALCULO DE ANTIGUEDAD PARA LA CARGA INICIAL
-	var listaMaestraTrayectoria = getListaMaestraGuardadoParcial('listaMaestraTrayectoriaLaboral')
+	var listaMaestraTrayectoria = "" //= getListaMaestraGuardadoParcial('listaMaestraTrayectoriaLaboral')
 
 	if(!(listaMaestraTrayectoria == "" || listaMaestraTrayectoria.length == 0)){
 
@@ -303,7 +303,7 @@ jQuery(document).ready(function() {
 			});
 			return false;
 		}
-		//Realiza la ejecución de la función para validar el formulario, si todos los datos estan correctos continúa
+		//Realiza la ejecuciï¿½n de la funciï¿½n para validar el formulario, si todos los datos estan correctos continï¿½a
 		continuarProceso = validarFormularioTrayectoriaLaboral();
 		if (continuarProceso == true){
 			jQuery("#botonAgregarTrayectoriaLaboral").attr("disabled", false);
@@ -320,7 +320,7 @@ jQuery(document).ready(function() {
 		var msgError = "";
 		var patternCURP = new RegExp("((^([0-9A-Za-z\u00D1\u00F1\u00C1\u00E1\u00C9\u00E9\u00CD\u00ED\u00D3\u00F3\u00DA\u00FA\u00DC\u00FC])*)((\\s{0,1})([0-9A-Za-z\u00D1\u00F1\u00C1\u00E1\u00C9\u00E9\u00CD\u00ED\u00D3\u00F3\u00DA\u00FA\u00DC\u00FC])+)*$)");
 	
-		//Se generan variables con los campos del formulario para validar la estructura de la información capturada
+		//Se generan variables con los campos del formulario para validar la estructura de la informaciï¿½n capturada
 	
 		var ahorroSolidario = jQuery("#ahorroSolidario").val();		
 		var dependencia = jQuery("#dependencia").val();
@@ -397,7 +397,7 @@ jQuery(document).ready(function() {
 	
 	}
 
-//////----Validación para el nombre del archivo cargado
+//////----Validaciï¿½n para el nombre del archivo cargado
 	function funcionUtilSenFileTrayectoriaLaboral(mapa){
 	
 		var cveDoc = jQuery.parseJSON(jQuery("#lstDocumentosTrayectoriaLaboral").val().toString())[0].cveDocumento
