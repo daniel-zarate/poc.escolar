@@ -1,23 +1,20 @@
 package mx.com.gunix.ui.springmvc.view.met.administracionExpediente;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.LinkedList
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.util.zip.ZipEntry
+import java.util.zip.ZipInputStream
 
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse
+
+import mx.com.gunix.met.administracionexpediente.file.FileMeta
+
+import org.springframework.stereotype.Controller
+import org.springframework.util.FileCopyUtils
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.MultipartHttpServletRequest
 
  
 @Controller
@@ -146,11 +143,6 @@ public class FileController {
 				 continue;  
 			 }
 			 
-			  
-			 fileMeta.setId( (fileName.split("\\.")[0]).split("_")[1] );
-			 fileMeta.setFileName(fileName);
-			 
- 
 			 if (ze.isDirectory()) {
 				 // create all non exists folders
 				 // else you will hit FileNotFoundException for compressed folder
@@ -170,7 +162,11 @@ public class FileController {
  
 				 fos.close();
 			 }
+			 
+			 fileMeta.setId( (fileName.split("\\.")[0]).split("_")[1] );
+			 fileMeta.setFileName(fileName);
 			 fileMeta.setFileSize(newFile.length()/1024+" Kb");
+			 fileMeta.setFilePath(newFile.path);
 			 //fileMeta.setBytes(newFile.getBytes())
 			 fileList.add(fileMeta);
 			 

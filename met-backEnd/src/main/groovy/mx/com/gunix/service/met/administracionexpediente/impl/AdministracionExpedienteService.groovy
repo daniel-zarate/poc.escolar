@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service
 
 import javax.annotation.Resource
 import java.text.SimpleDateFormat
+import java.util.List;
 
 
 @Service
@@ -27,11 +28,15 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
     @Override
     Expediente guardarExpediente(Expediente expediente) {
 
+		println "Parametro Expediente es obligatorio ${expediente?.dump()}"
+		
         if (!expediente)
             throw new IllegalArgumentException('Parametro Expediente es obligatorio')
 
         def expedienteMongo = ExpedienteMapper.mapExpedienteToExpedienteMongoDB(expediente)
 
+		println "expediente to save: ${expedienteMongo?.dump()}"
+		
         expedienteMongo = expedienteRepository.save(expedienteMongo)
 
         if (expedienteMongo)
@@ -39,6 +44,33 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
 
         return expediente
     }
+	@Override
+	public List busquedaExpediente(Expediente expediente) {
+		List expedienteListResult = []
+		
+		//TODO: look in mongo for expediente like expediente
+		//def expedienteMongo = ExpedienteMapper.mapExpedienteToExpedienteMongoDB(expediente)
+		//def expedienteMongoResultList = expedienteRepository.findLike(expedienteMongo)
+		//each expedienteMongoResultList -> ExpedienteMapper.mapExpedienteMongoDBToExpediente(it)
+		
+		Expediente result = new Expediente()
+		
+		//TODO: Busqueda
+		Expediente e = new Expediente();
+		e.nombre = "Noe";
+		e.apellidoPaterno = "Albarran"
+		e.apellidoMaterno= "Ceron"
+		e.curp = "AACN850610HDFLRX04"
+		
+		expedienteListResult.add(expediente)
+		
+		return expedienteListResult;
+	}
+	@Override
+	public Expediente getExpediente(String idExpediente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

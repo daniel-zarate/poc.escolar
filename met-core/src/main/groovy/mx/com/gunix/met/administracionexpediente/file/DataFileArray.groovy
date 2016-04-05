@@ -1,10 +1,10 @@
-package mx.com.gunix.ui.springmvc.view.met.administracionExpediente;
+package mx.com.gunix.met.administracionexpediente.file;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties
+//import org.codehaus.jackson.annotate.JsonIgnoreProperties
 
 
-public class DataFileArray {
-
+public class DataFileArray implements Serializable {
+	
 	public DataFileArray(){
 		file = new FileMeta()
 		requestParameterId = [:]

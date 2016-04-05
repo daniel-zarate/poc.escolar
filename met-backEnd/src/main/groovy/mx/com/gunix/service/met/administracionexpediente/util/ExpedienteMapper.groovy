@@ -70,5 +70,18 @@ class ExpedienteMapper {
          //Todo terminar
         return expedienteMongo
     }
+	 
+	 static Expediente mapExpedienteMongoDBToExpediente(ExpedienteDB expedienteMongo){
+		 def expediente = new Expediente();
+		 expediente.nombre = expedienteMongo.datosPersonales.nombres
+		 expediente.apellidoPaterno = expedienteMongo.datosPersonales.primerApellido
+		 expediente.apellidoMaterno = expedienteMongo.datosPersonales.segundoApellido
+		 expediente.curp = expedienteMongo.datosPersonales.curp
+		 
+		 //TODO: completar
+		 
+		 return expediente
+	 }
 
 }
+

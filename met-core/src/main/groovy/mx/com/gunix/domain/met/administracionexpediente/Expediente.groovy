@@ -8,6 +8,10 @@ import javax.validation.constraints.Pattern
 @Canonical
 class Expediente implements Serializable {
 
+	public Expediente (){
+		formacionAcademicaList = []
+		dependientesFamiliaresList = []
+	}
 
     String id
 
@@ -150,6 +154,10 @@ class Expediente implements Serializable {
 	String tipoAntiguedad
 	String tipoRama
 	String tipoPeriodo
+	
+	List formacionAcademicaList
+	List dependientesFamiliaresList
+	
 	
 	
 }

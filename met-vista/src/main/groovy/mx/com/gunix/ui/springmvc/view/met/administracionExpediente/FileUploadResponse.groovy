@@ -1,6 +1,6 @@
 package mx.com.gunix.ui.springmvc.view.met.administracionExpediente;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties
+import mx.com.gunix.met.administracionexpediente.file.FileMeta
 
 //@JsonIgnoreProperties(["files.bytes"])
 public class FileUploadResponse {

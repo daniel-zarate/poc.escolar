@@ -51,12 +51,19 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 	 		
 	 		while(en.hasMoreElements()){
 	 			String name = en.nextElement();
-	 			//System.out.println("propiedad: " + name);
-	 			e."${name}" = request.getParameter(name);
-	 			//System.out.println("valor: " + e."${name}");
-	 			
+				 if(e.hasProperty("${name}".toString()))
+	 				e."${name}" = request.getParameter(name);
 	 		}
-	 		
+			 
+			 e.formacionAcademicaList = []
+			 e.dependientesFamiliaresList = [] 
+			 
+			 if( request.getSession().getAttribute("formacionAcademica") )
+			 	e.formacionAcademicaList.addAll( request.getSession().getAttribute("formacionAcademica") )
+			
+			 if( request.getSession().getAttribute("dependientesFamiliares") )
+			 	e.dependientesFamiliaresList.addAll( request.getSession().getAttribute("dependientesFamiliares") ) 
+			 
 			 System.out.println("Expediente: " + e?.dump());
 			 
 			 Errors errors = null;
@@ -65,7 +72,7 @@ public class PantallaInicialView extends AbstractGunixController<Expediente> {
 			 
 			 println "errors - ${errors?.dump()}" 
 			 
-			 if(errors.hasErrors()){
+			 if(errors?.hasErrors()){
 				 println "si hubo errores"
 			 }
 			 
