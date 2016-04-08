@@ -28,8 +28,8 @@ class ExpedienteDB implements Serializable{
     @Field('esquema_pago')
     EsquemaPago esquemaPago
 
-    @Field('trayectoria_laboral')
-    TrayectoriaLaboral trayectoriaLaboral
+//    @Field('trayectoria_laboral')
+//    TrayectoriaLaboral trayectoriaLaboral
 
     @Field('formacion_academica')
     FormacionAcademica formacionAcademica

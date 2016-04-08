@@ -19,7 +19,7 @@ class ExpedienteRepositoryTest {
     ExpedienteRepository expedienteRepository
 
     @Test
-    @Ignore
+    //@Ignore
     void insertExpediente(){
         ExpedienteDB expediente = new ExpedienteDB()
         def expediente1 = expedienteRepository.save(expediente)

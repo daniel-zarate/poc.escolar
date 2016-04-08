@@ -1,4 +1,4 @@
-var procedimiento;
+var procedimiento = "";
 var altaEsquema;
 var modificarEsquema;
 var isBancarizado;
@@ -99,8 +99,8 @@ jQuery(document).ready(function() {
 		    	  jQuery("#cveBanco").prop("required",false);
 		       }
 		  }
-		  else{ // procedimiento == "crear"
-			// Alta
+		  else{ 
+			  
 			jQuery("#tipoBancarizado").hide();
 		   
 		  } 

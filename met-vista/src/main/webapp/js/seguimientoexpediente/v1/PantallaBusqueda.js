@@ -22,18 +22,21 @@ jQuery(document).ready(function() {
             },
             curp: {
                 title: 'CURP',
-                width: '20%'
+                width: '20%',
+                display: function (data) {
+                	        return '<a href="#" class="folioBusqueda" onclick="javascript:buscarExpediente(\''+data.record.id+'\')" id="'+data.record.id+'">'+data.record.curp+'</a>';
+                }
             },
             nombre: {
                 title: 'Nombre',
                 width: '20%'
             },
-            primerApellido: {
-                title: 'Age',
+            apellidoPaterno: {
+                title: 'Apellido Paterno',
                 width: '20%'
             },
-            segundoApellido: {
-                title: 'Age',
+            apellidoMaterno: {
+                title: 'Apellido Materno',
                 width: '20%'
             },
             folio: {
@@ -43,6 +46,7 @@ jQuery(document).ready(function() {
             
         }
     });
+	
 	
 		
 	
@@ -126,6 +130,12 @@ jQuery(document).ready(function() {
 	});
 	
 });
+
+function buscarExpediente(id){
+	console.log("idTrabajador: " + id)
+	jQuery("#idTrabajador").val(id)
+	jQuery("#busquedaButton").trigger( "click")
+}
 
 
 function clickTabla (event){

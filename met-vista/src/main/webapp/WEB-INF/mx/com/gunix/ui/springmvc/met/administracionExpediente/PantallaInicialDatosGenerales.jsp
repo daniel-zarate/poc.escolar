@@ -26,17 +26,17 @@
 	<div id="showError" class="error"></div>
 
 <%--	<insane:insaneForm id="getPantallaForm" name="getPantallaForm "	processInstance="${processInstance}" enctype="multipart/form-data"	method="post" action="/Sane/rest/processActiviti/process" >--%>
-		<input id="idOperacion" type="hidden" value="${idOperacion}" />
+		<input id="idOperacion" type="hidden" value="${resultExpediente.expediente.idOperacion}" />
 <%-- 		<input type="hidden" name="documentosDatosGenerales" id ="documentosDatosGenerales" value="${ lstDocumentosDatosGenerales ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(lstDocumentosDatosGenerales) : '' }" /> --%>
 <%-- 		<input type="hidden" id ="doctosCargadosDatosGenerales" value="${ mapDoctosDatosGenerales == null ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(mapDoctosDatosGenerales) : '' }" /> --%>
 <!-- 		<input name="requeridosDatosGenerales" id="requeridosDatosGenerales" type="hidden" value="false"/> -->
-		<input  id="rfcDG" type="hidden" value="${rfc}"/>
+		<input  id="rfcDG" type="hidden" value="${resultExpediente.expediente.rfc}"/>
 		
 		<div class="small-12 columns" align="left">
 			<div class="small-8 columns">
 				<div class="small-6 columns ">
 					<label><spring:message code="administracionExpediente.v1.view.label.datosGenerales.celular"></spring:message></label>
-					<input name="celular" id="celular" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.celular"  />" pattern="[0-9]{10}" maxLength="10" value="${celular}" /> 
+					<input name="celular" id="celular" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.celular"  />" pattern="[0-9]{10}" maxLength="10" value="${resultExpediente.expediente.celular}" />a 
 					<small class="error" id="errorCelular">
 						<spring:message code="ER-044016"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.celular" />,10' />
 						<br><spring:message code="ER-044006"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.celular" />,<spring:message code="administracionExpediente.v1.view.label.datosGenerales.numerico" /> '/>
@@ -45,7 +45,7 @@
 
 				<div class="small-6 columns ">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosGenerales.email"  /></label>
-					<input name="email" id="email" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.email"  />" pattern="email" value="${email}" value="${email}"  maxlength="50" />
+					<input name="email" id="email" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.email"  />" pattern="email" value="${resultExpediente.expediente.email}"  maxlength="50" />
 					<small class="error" id="seleccioneModulo">
 						<spring:message code="ER-044011"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.email" />' />
 					</small>
@@ -69,8 +69,8 @@
 				
 				<div class="large-12 columns" align="left">
 					<div class="medium-12 columns">
-						<input name="calle" id="calle" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.calle"  />" 
-						 maxLength="120" value="${calle}"  />
+						<input name="calle" id="calle" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.calle" />" 
+						 maxLength="120" value="${resultExpediente.expediente.calle}"  />
 						<small class="error">
 							<spring:message code="ER-044006"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.calle" />,<spring:message code="administracionExpediente.v1.view.label.datosGenerales.alfanumerico" />' />
 							<br><spring:message code="ER-044008"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.calle" />' />
@@ -98,7 +98,7 @@
 				<div class="large-12 columns" align="left">
 				
 				<div class="medium-4 columns">
-						<input name="codPosta" id="codPostal" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.codPosta"  />" pattern="^0*?[1-9]\d*$" maxLength="5" value="${codPosta!=null ? codPosta : null }"   />
+						<input name="codPosta" id="codPostal" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.codPosta"  />" pattern="^0*?[1-9]\d*$" maxLength="5" value="${resultExpediente.expediente.codPosta}"   />
 						<small class="error">
 							<spring:message code="ER-044006"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.codPosta" /> ,<spring:message code="administracionExpediente.v1.view.label.datosGenerales.alfanumerico" />' />
 							<br><spring:message code="ER-044008"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.codPosta" />' />
@@ -153,15 +153,15 @@
 						</small>
 					</div>
 					<div class="medium-4 columns">
-						<input name="localidad" id="localidad" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.localidad"  />" maxLength="100" 
-						  value="${localidad}" />
+						<input name="localidad" id="localidad" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.localidad" />" maxLength="100" 
+						  value="${resultExpediente.expediente.localidad}" />
 						<small class="error">
 							<spring:message code="ER-044006"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.localidad" />,<spring:message code="administracionExpediente.v1.view.label.datosGenerales.alfanumerico" />' />
 						</small>
 					</div>
 					
 					<div class="medium-4 columns">
-						<input name="telefono" id="telefono" class="sep-text-medium" maxLength="10" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.telefono"  />" maxLength="10" pattern="^[0-9]*$" value="${telefono}"  />
+						<input name="telefono" id="telefono" class="sep-text-medium" maxLength="10" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.telefono"  />" maxLength="10" pattern="^[0-9]*$" value="${resultExpediente.expediente.telefono}"  />
 						<small class="error">
 							<spring:message code="ER-044016"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.telefono" />,10' />
 							<br><spring:message code="ER-044006"   arguments='<spring:message code="administracionExpediente.v1.view.label.datosGenerales.telefono" />,<spring:message code="administracionExpediente.v1.view.label.datosGenerales.numerico" />' />
@@ -184,7 +184,7 @@
 				
 				<div class="large-12 columns" align="left">
 					<div class="medium-9 columns">
-						<input name="observaciones" id="observaciones" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.observaciones"  />" maxLength="500" value="${observaciones}" />
+						<input name="observaciones" id="observaciones" class="sep-text-medium" type="text" placeholder="<spring:message code="administracionExpediente.v1.view.label.datosGenerales.observaciones"  />" maxLength="500" value="${resultExpediente.expediente.observaciones}" />
 					</div>
 					
 				</div>

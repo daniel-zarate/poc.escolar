@@ -14,12 +14,17 @@ class Expediente implements Serializable {
 	}
 
     String id
+	String estatusExpediente
+	String estatusTrabajador
+	String folioTrabajador 
+	String folioExpediente
 
     String fragments
     String idAplicacion
     String isCompleteTask
     String documentacion
     String operation
+	String idOperacion
     String requeridosDatosGenerales
 
     /*Datos Personales*/
@@ -39,6 +44,9 @@ class Expediente implements Serializable {
 	
 	@Pattern (regexp = "[a-zA-Z&]{4}[0-9]{6}[a-zA-Z0-9]{3}\$")
     String rfc
+	
+	@Pattern (regexp = "[0-9]{15}\$")
+	String numSeguroSocial
 	
 	@NotNull
 	@Size(min=1)
@@ -105,6 +113,7 @@ class Expediente implements Serializable {
     String observaciones
 
     /*Esquema de pago*/
+	Integer bancarizado
     String cveBanco
     String clabe
 

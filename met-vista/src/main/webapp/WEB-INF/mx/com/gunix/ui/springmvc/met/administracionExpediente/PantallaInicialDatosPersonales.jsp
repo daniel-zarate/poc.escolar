@@ -36,7 +36,7 @@
 
 	<div id="showError" class="error"></div>
 	<input type="hidden" name="documentacion" id ="documentacion" value="" />
-	<input type="hidden" name="operation" id ="operation" value="${idOperacion}" />	
+	<input type="hidden" name="operation" id ="operation" value="${resultExpediente.expediente.idOperacion}" />	
 	<div class="small-12 columns">
 		<div class="row">
 			<!-- -------------- Primer Apellido -------------- -->
@@ -44,7 +44,7 @@
 						<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.primerApellido" />
 <!-- 						<font color="red">*</font> -->
 						</label> 
-						<input name="apellidoPaterno" id="apellidoPaterno" type="text" class="sep-text-medium" placeholder="" value="${apellidoPaterno}" maxlength="50" /> 
+						<form:input name="apellidoPaterno" id="apellidoPaterno" path="apellidoPaterno" type="text" class="sep-text-medium" placeholder="" value="${resultExpediente.expediente.apellidoPaterno}" maxlength="50" /> 
 						<small class="error">
 							<spring:message code="administracionExpediente.v1.view.label.datosPersonales.primerApellido.requerido"  />
 						</small>
@@ -53,7 +53,7 @@
 			<div class="small-4 columns">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.segundoApellido"  /></label> 
 <%-- 				<input name="apellidoMaterno" id="apellidoMaterno" type="text" class="sep-text-medium" placeholder="" value="${apellidoMaterno}" maxlength="50" />  --%>
-				<form:input path="apellidoMaterno" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" />
+				<form:input path="apellidoMaterno" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" value="${resultExpediente.expediente.apellidoMaterno}" />
 				<small class="error">
 					<spring:message code="administracionExpediente.v1.view.label.datosPersonales.segundoApellido.requerido" />
 				</small>
@@ -67,11 +67,11 @@
 				<c:set var="nombreError"><form:errors path="nombre"/></c:set>
 				<c:if test="${not empty nombreError}">
 					con error u.u
-					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" data-invalid="data-invalid" />
+					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" data-invalid="data-invalid" value="${resultExpediente.expediente.nombre}" />
 				</c:if>
 				<c:if test="${empty nombreError}">
 					sin error
-					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" />
+					<form:input path="nombre" cssClass="sep-text-medium" cssStyle="sep-text-medium" maxlength="50" required="required" value="${resultExpediente.expediente.nombre}" />
 				</c:if>
 				
 <%-- 				<input name="nombre" id="nombre" type="text" class="sep-text-medium" placeholder="" required  value="${nombre}" maxlength="50" />  --%>
@@ -96,7 +96,7 @@
 		<!-- ---------------- Numero de Seguridad Social ---------------- -->
 		<div class="small-4 columns">
 			<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.numeroSeguridadSocial" /></label> 
-			<input name="numSeguroSocial" id="numeroSeguridadSocialEmpleado" class="sep-text-medium" type="text" placeholder="" value="${numSeguroSocial}" maxlength="15"  ${numSeguroSocial== null ? 'disabled':''}  />
+			<input name="numSeguroSocial" id="numeroSeguridadSocialEmpleado" class="sep-text-medium" type="text" placeholder="" value="${resultExpediente.expediente.numSeguroSocial}" maxlength="15"  ${numSeguroSocial== null ? 'disabled':''}  />
 		</div>
 		<!-- ---------------- CURP ---------------- -->
 		<div class="small-4 columns">
@@ -104,14 +104,14 @@
 			<spring:message code="administracionExpediente.v1.view.label.datosPersonales.curp"  />
 			<font color="red">*</font></label> 
 <%-- 			<input ${curp?'disabled':''} id="curp" name="curp" type="text" class="sep-text-medium" placeholder=<spring:message code="administracionExpediente.v1.view.label.datosPersonales.curp"/> required value="${curp}" maxlength="18"  />  --%>
-				<form:input id="curp" name="curp" path="curp" type="text" class="sep-text-medium" placeholder="" required="required" maxlength="18" value="${curp}"  />
+				<form:input id="curp" name="curp" path="curp" type="text" class="sep-text-medium" placeholder="" required="required" maxlength="18" value="${resultExpediente.expediente.curp}"  />
 			<small class="error"><spring:message code="ER-044012"  /></small>
 		</div>
 		<!-- ---------------- RFC ---------------- -->
 		<div class="small-4 columns">
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.rfc"  /><font color="red">*</font></label> 
 <%-- 				<input name="rfc" id="rfcUsuario" type="text" class="sep-text-medium" placeholder="" required value="${rfc}" maxlength="13"  />  --%>
-					<form:input name="rfc" id="rfcUsuario" path="rfc" type="text" class="sep-text-medium" placeholder="" required="required" value="${rfc}" maxlength="13"  />
+					<form:input name="rfc" id="rfcUsuario" path="rfc" type="text" class="sep-text-medium" placeholder="" required="required" value="${resultExpediente.expediente.rfc}" maxlength="13"  />
 				<small class="error">
 						<spring:message code="administracionExpediente.v1.view.label.datosPersonales.rfc.requerido"  />
 				</small>
@@ -158,10 +158,11 @@
 				<label><spring:message code="administracionExpediente.v1.view.label.datosPersonales.sexo" />
 <!-- 				<font color="red">*</font> -->
 				</label>
-				<select name="cveSexo" id="cveSexo" class="sep-text-medium left" >
-						<option value="0">Masculino</option>
-						<option value="1">Femenino</option>
-					</select>
+				<form:select name="cveSexo" id="cveSexo" path="cveSexo" class="sep-text-medium left" >
+<!-- 						<option value="0">Masculino</option> -->
+<!-- 						<option value="1">Femenino</option> -->
+					<form:options items="${resultExpediente.generoList}" itemLabel="valor" itemValue="id"  />
+				</form:select>
 				<small class="error"><spring:message
 						code="administracionExpediente.v1.view.label.datosPersonales.sexo.requerido"
 						 /></small>

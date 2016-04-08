@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="gunix" uri="/framework/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +95,7 @@
 <!-- 		</g:each> -->
 <!-- 	</g:if> -->
 	<div id="showError" class="error"></div>
-	<form id="getPantallaForm" name="getPantallaForm" enctype="multipart/form-data"	method="post" action="/Sane/rest/processActiviti/process">
+<%-- 	<form id="getPantallaForm" name="getPantallaForm" enctype="multipart/form-data"	method="post" action="/Sane/rest/processActiviti/process"> --%>
 
         <div class="row" align="left">
            <div class="large-12 columns" align="center">&nbsp; </div>
@@ -114,12 +115,14 @@
 						<input  name="curpBusqueda" id="curpBusqueda" class="sep-text-medium" maxlength="18" type="text" />
 					</div>
 					<div class="medium-3 columns ">
-					<label><spring:message code="busqueda.v1.view.busquedaAvanzada.label.estatusExpediente"  /><font color="red">* </font></label>
-						<select id="estatusBusqueda" name="estatusBusqueda" class="sep-text-medium left" >
-							<option value="1">En proceso</option>
-							<option value="2">Autorizado</option>
-							<option value="3">Rechazado</option>
-						</select>
+					<label>5<spring:message code="busqueda.v1.view.busquedaAvanzada.label.estatusExpediente"  /><font color="red">* </font></label>
+						<form:select path="estatusBusqueda" id="estatusBusqueda" name="estatusBusqueda" class="sep-text-medium left" >
+<!-- 							<option value="1">En proceso</option> -->
+<!-- 							<option value="2">Autorizado</option> -->
+<!-- 							<option value="3">Rechazado</option> -->
+<%-- 							<option value="${resultMap.combo1.id}"><c:out value="${resultMap.combo1.valor}" /></option> --%>
+								<form:options items="${resultMap.estatusExpedienteList}" itemLabel="valor" itemValue="id"/>
+						</form:select>
 					</div>
 				</div>
 			</div>
@@ -145,7 +148,6 @@
 					<div class="large-3 medium-3 columns">
 					<label><spring:message code="busqueda.v1.view.busquedaAvanzada.label.fecha"  /></label>
 					<input  name="fechaField" id="fechaField" class="sep-text-medium" maxlength="18" type="text"  />
- 					</label>
 				</div>
 				</div>
 
@@ -154,16 +156,16 @@
 					<input class="button tiny" type="button" id="botonBusqueda" name="idAccion" value="Buscar" alt="consultar" />
 			</div>
 		</div>
-		</form>
+<%-- 		</form> --%>
 		
-		<form id="formaFantasmaForm" name="formaFantasma" enctype="multipart/form-data"	method="post" action="/Sane/rest/processActiviti/process">
-			<input type="hidden" id="hiddenFantasma" name="idTrabajador" value="" />
-			<input type="hidden" id="hiddenFolio" name="folioActiviti" value="" />
-			<input type="hidden" id="ramo" name="ramo" value="" />
-			<input type="hidden" id="ur" name="ur" value="" />
-			<input type="hidden" id="estatusExpedienteTrabajador" name="estatusExpedienteTrabajador" value="" />
-			<input style="visibility: hidden;" type="button" id="EnviarFantasmaSubmitButton" name="idAccion" value="Buscar" alt="seleccionar" />
-		</form>
+<%-- 		<form:form method="POST" commandName="BusquedaExpediente" data-abide="ajax" id="foundationForm" > --%>
+			<input type="hidden" id="idTrabajador" name="idTrabajador" value="" path=idTrabajador />
+<!-- 			<input style="visibility: hidden;" type="button" id="EnviarFantasmaSubmitButton" name="idAccion" value="Buscar" alt="seleccionar" /> -->
+			<div style="visibility: hidden;">
+			<gunix:completeTask  id="busquedaButton" label="Buscar" ></gunix:completeTask>
+			</div>
+		
+<%-- 		</form:form> --%>
 		
 	<div class="row">
 		

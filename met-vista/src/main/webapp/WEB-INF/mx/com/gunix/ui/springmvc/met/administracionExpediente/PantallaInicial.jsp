@@ -57,23 +57,23 @@
 					<div class="small-8 columns">
 						<div class="large-12 columns" id="CombosAnidadosRamoUr">
 							<div class="medium-4 columns ">
-								<label>CURP</label> <input name="curpEncabezado" id="curpGlobal" class="sep-text-medium" type="text" placeholder="CURP" 	value="" disabled="disabled">
+								<label>CURP</label> <input name="curpEncabezado" id="curpGlobal" class="sep-text-medium" type="text" placeholder="CURP" 	value="${resultExpediente.expediente.curp}" disabled="disabled">
 							</div>
-							<div class="medium-4 columns ">
-								<label>RAMO <font color="red">*</font></label>
-									<input name="ramo" id="ramoGlobal" class="sep-text-medium"
-										type="text"
-										placeholder=""
-										value="${ramo}" disabled="disabled">
+<!-- 							<div class="medium-4 columns "> -->
+<!-- 								<label>RAMO <font color="red">*</font></label> -->
+<!-- 									<input name="ramo" id="ramoGlobal" class="sep-text-medium" -->
+<!-- 										type="text" -->
+<!-- 										placeholder="" -->
+<%-- 										value="${resultExpediente.expediente.ramo}" disabled="disabled"> --%>
 							
-							</div>
-							<div class="medium-4 columns ">
-								<label>UR <font color="red">*</font></label>
-									<input name="ur" id="urGlobal" class="sep-text-medium"
-										type="text"
-										placeholder="UR"
-										value="${urDescripcion}" disabled="disabled">
-							</div>
+<!-- 							</div> -->
+<!-- 							<div class="medium-4 columns "> -->
+<!-- 								<label>UR <font color="red">*</font></label> -->
+<!-- 									<input name="ur" id="urGlobal" class="sep-text-medium" -->
+<!-- 										type="text" -->
+<!-- 										placeholder="UR" -->
+<%-- 										value="${urDescripcion}" disabled="disabled"> --%>
+<!-- 							</div> -->
 						</div>
 						<div class="large-12 columns">
 							<div class="medium-4 columns">
@@ -81,7 +81,7 @@
 									name="apellidoPaterno" id="apellidoPaternoGlobal"
 									class="sep-text-medium"
 									placeholder=""
-									required type="text" value="${apellidoPaterno}" maxlength="50"
+									required type="text" value="${resultExpediente.expediente.apellidoPaterno}" maxlength="50"
 									disabled="disabled" />
 							</div>
 							<!-- -------------- Segundo Apellido -------------- -->
@@ -90,7 +90,7 @@
 								<input name="apellidoMaterno"
 									id="apellidoMaternoGlobal" class="sep-text-medium"
 									placeholder=""
-									type="text" value="${apellidoMaterno}" maxlength="50"
+									type="text" value="${resultExpediente.expediente.apellidoMaterno}" maxlength="50"
 									disabled="disabled" />
 							</div>
 							<!-- ---------------- Nombre ---------------- -->
@@ -98,7 +98,7 @@
 								<label>Nombre <font color="red">*</font></label> <input
 									name="nombre" id="nombreGlobal" class="sep-text-medium"
 									placeholder="Nombre"
-									required type="text" value="${nombre}" maxlength="50"
+									required type="text" value="${resultExpediente.expediente.nombre}" maxlength="50"
 									disabled="disabled" />
 							</div>
 						</div>
@@ -107,11 +107,11 @@
 								<label>Estatus del Expediente<font color="red">*</font></label> 
 								<input
 									name="estatusTrabajador" id="estatusTrabajador"
-									class="sep-text-medium" type="text" value=""
+									class="sep-text-medium" type="text" value="${resultExpediente.expediente.estatusTrabajador}"
 									maxlength="50" disabled="disabled" />
 							</div>
 							<div class="medium-8 columns right">
-								<label>Folio : ${folioSolicitud}
+								<label>Folio : ${resultExpediente.expediente.folioExpediente}
 								</label>
 							</div>
 						</div>
@@ -123,14 +123,14 @@
 								name="folioTrabajador" id="folioTrabajador"
 								class="sep-text-medium"
 								placeholder="Numero Expediente"
-								required type="text" value="" maxlength="50"
+								required type="text" value="${resultExpediente.expediente.folioTrabajador}" maxlength="50"
 								disabled="disabled" />
 						</div>
 						<div class="medium-12 columns left">&nbsp;</div>
 						<div class="medium-12 columns left">&nbsp;</div>
 						<div class="medium-12 columns left">
 							<label>Estatus del Expediente</label> 
-							<input name="estatusExpediente" id="estatusExpediente" class="sep-text-medium" required type="text" value="" maxlength="50" disabled="disabled" />
+							<input name="estatusExpediente" id="estatusExpediente" class="sep-text-medium" required type="text" value="${resultExpediente.expediente.estatusExpediente}" maxlength="50" disabled="disabled" />
 	
 						</div>
 						<div class="medium-12 columns left">&nbsp;</div>

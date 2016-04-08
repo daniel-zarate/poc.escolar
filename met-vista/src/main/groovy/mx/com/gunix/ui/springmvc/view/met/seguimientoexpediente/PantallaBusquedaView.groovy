@@ -29,13 +29,22 @@ public class PantallaBusquedaView extends AbstractGunixController<BusquedaExpedi
 	 		
 	 		System.out.println("getVariablesTarea");
 
-			BusquedaExpediente e = new BusquedaExpediente();
+			BusquedaExpediente busquedaExpediente = new BusquedaExpediente();
+			
+			Enumeration< String > en =  request.getAttributeNames();
+			en = request.getParameterNames();
+			while(en.hasMoreElements()){
+				String name = en.nextElement();
+				if(busquedaExpediente.hasProperty("${name}".toString()))
+					busquedaExpediente."${name}" = request.getParameter(name);
+			}
+			
 			 
 	 		List<Variable<?>> vars = new ArrayList<Variable<?>>();
-	 		Variable<BusquedaExpediente> expedienteVar = new Variable<BusquedaExpediente>();
-	 		expedienteVar.setNombre("expediente");
-	 		expedienteVar.setValor( e );
-	 		vars.add(expedienteVar);
+	 		Variable<BusquedaExpediente> busquedaVar = new Variable<BusquedaExpediente>();
+	 		busquedaVar.setNombre("busquedaExpediente");
+	 		busquedaVar.setValor( busquedaExpediente );
+	 		vars.add(busquedaVar);
 	 		return vars;
 	 	}
 	 

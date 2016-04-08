@@ -37,7 +37,7 @@ public class BusquedaExpedienteController {
 		List expedienteList = []
 		
 		println "administracionExpedienteService: ${seguimientoExpedienteService.busquedaExpediente(null)}"
-
+		expedienteList.addAll(seguimientoExpedienteService.busquedaExpediente(null))
 		//expedienteList.get
 				
 		return ["Result":"OK", "Records":expedienteList]

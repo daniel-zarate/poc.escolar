@@ -8,7 +8,7 @@
     <sequenceFlow id="flow2" sourceRef="CargaInicialSeguimiento" targetRef="PantallaBusquedaSeguimiento"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow3" sourceRef="PantallaBusquedaSeguimiento" targetRef="BuscaExpedienteSeguimiento"></sequenceFlow>
-    <serviceTask id="BuscaExpedienteSeguimiento" name="BuscaExpediente" activiti:expression="${buscaExpediente.execute(expediente)}" activiti:resultVariableName="resultBuscaExpediente"></serviceTask>
+    <serviceTask id="BuscaExpedienteSeguimiento" name="BuscaExpediente" activiti:expression="${buscaExpedienteSeguimiento.execute(busquedaExpediente)}" activiti:resultVariableName="resultExpediente"></serviceTask>
     <sequenceFlow id="flow4" sourceRef="BuscaExpedienteSeguimiento" targetRef="PantallaInicialSeguimiento"></sequenceFlow>
     <serviceTask id="GuardaExpedienteSeguimiento" name="GuardaExpediente" activiti:expression="${guardaExpediente.execute(expediente)}" activiti:resultVariableName="resultGuardaExpediente"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>

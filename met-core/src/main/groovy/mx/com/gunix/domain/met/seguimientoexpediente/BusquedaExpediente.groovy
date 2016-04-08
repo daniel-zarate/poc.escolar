@@ -15,5 +15,11 @@ class BusquedaExpediente implements Serializable {
     String nombre
 	
     String curp
+	
+	String estatusBusqueda
+	
+	String folio
+	
+	String idTrabajador
 		
 }

@@ -1,4 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -27,12 +29,13 @@ var activitiBancarizado = "${bancarizado != null ? bancarizado : null}"
 <%-- 		<input type="hidden" name="doctosEsquemaPagoMap" id ="doctosEsquemaPagoMap" value="${ lstDocumentosEsquemaPago ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(lstDocumentosEsquemaPago) : '' }" /> --%>
 <%-- 		<input type="hidden" id ="doctosCargadosEsquemaPagoMap" value="${ mapDoctosEsquemaPago ? mx.gob.sep.dgpyrf.insanefwk.codes.ChangeTypeObject.getObjectToString(mapDoctosEsquemaPago) : '' }" />																							   --%>
 		<div class="row">
-			<input id="idOperacion" type="hidden" value="${idOperacion}" />
+			<!-- TODO: poner idOperacion -->
+			<input id="idOperacion" type="hidden" value="modificar" />
 			<div class="columns medium-text-left">
 				<label><spring:message code="administracionExpediente.v1.view.label.esquemaPago.bancarizado"	 /><font color="red">*</font></label>
 			</div>
 			<div class="columns">			     
-				<input id="isBancarizado" type="hidden" value="${bancarizado != null ? bancarizado : null}" /> 
+				<input id="isBancarizado" type="hidden" value="${resultExpediente.expediente.bancarizado != null ? resultExpediente.expediente.bancarizado : null}" /> 
 				<label> 
 					<input id="bancarizadoSi" type="radio" name="bancarizado" value="1" />
 					<spring:message 	code="administracionExpediente.v1.view.label.esquemaPago.si"  /> &nbsp; &nbsp; 
@@ -45,7 +48,7 @@ var activitiBancarizado = "${bancarizado != null ? bancarizado : null}"
 				<div class="small-10 columns">
 					<div class="small-5 columns">
 						<label><spring:message  code="administracionExpediente.v1.view.label.esquemaPago.institucionBancaria"  /><font color="red">*</font></label>
-						<select name="cveBanco" id="cveBanco" class="sep-text-medium" >
+						<form:select name="cveBanco" id="cveBanco" path="cveBanco" class="sep-text-medium" >
 							<option value="0"><spring:message code="met.administracionExpediente.v1.view.label.selectDefault" /></option>
 <%-- 							<g:each in="${bancos}" var="item"> --%>
 <%-- 								<g:if test="${(item.cveBanco.equals(EsquemaPagoVO?.cveBanco)) || item.cveBanco.equals(cveBanco)}"> --%>
@@ -59,13 +62,14 @@ var activitiBancarizado = "${bancarizado != null ? bancarizado : null}"
 <!-- 									</option> -->
 <!-- 								</g:else> -->
 <!-- 							</g:each> -->
-								<option value="0">Banamex</option>
-						</select> 
+<!-- 								<option value="002">Banamex</option> -->
+								<form:options items="${resultExpediente.bancoList}" itemLabel="valor" itemValue="id"  />
+						</form:select> 
 						<small class="error"><spring:message code="administracionExpediente.v1.view.error.esquemaPago.institucion" /> </small>
 					</div>
 					<div class="small-7 columns">
 						<label><spring:message  code="administracionExpediente.v1.view.label.esquemaPago.clabe"  /><font color="red">*</font> </label>
-						<input type="text" class="sep-text-medium" name="clabe" id="clabe" value="${clabe}" maxlength="18"
+						<input type="text" class="sep-text-medium" name="clabe" id="clabe" value="${resultExpediente.expediente.clabe}" maxlength="18"
 							pattern="(^[0-9]{18,18})" placeholder="CLABE Interbancaria"   /> 
 							<small	class="error" ><spring:message	code="administracionExpediente.v1.view.error.esquemaPago.clabe"	 /></small>
 					</div>
