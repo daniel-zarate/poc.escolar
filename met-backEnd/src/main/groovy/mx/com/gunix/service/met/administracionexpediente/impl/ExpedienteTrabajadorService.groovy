@@ -1,11 +1,16 @@
 package mx.com.gunix.service.met.administracionexpediente.impl
 
 import mx.com.gunix.domain.persistence.mongo.model.ExpedienteDB
+import mx.com.gunix.domain.persistence.mongo.model.embedded.Beneficiario
 import mx.com.gunix.domain.persistence.relational.dbmappers.DatosGeneralesMapper
+import mx.com.gunix.domain.persistence.relational.dbmappers.DependientesMapper
 import mx.com.gunix.domain.persistence.relational.dbmappers.EsquemaPagoMapper
+import mx.com.gunix.domain.persistence.relational.dbmappers.FormacionAcademicaMapper
 import mx.com.gunix.domain.persistence.relational.dbmappers.TrabajadorMapper
 import mx.com.gunix.domain.persistence.relational.model.TDDatosGenerales
+import mx.com.gunix.domain.persistence.relational.model.TDDependientes
 import mx.com.gunix.domain.persistence.relational.model.TDEsquemaPago
+import mx.com.gunix.domain.persistence.relational.model.TDFormacionAcademica
 import mx.com.gunix.domain.persistence.relational.model.TDTrabajador
 import mx.com.gunix.service.met.administracionexpediente.IExpedienteTrabajadorService
 import org.springframework.stereotype.Service
@@ -25,6 +30,12 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
 
     @Resource
     EsquemaPagoMapper esquemaPagoMapper
+
+    @Resource
+    FormacionAcademicaMapper formacionAcademicaMapper
+
+    @Resource
+    DependientesMapper dependientesMapper
 
     void guardarExpedienteTrabajador(ExpedienteDB expedienteDB) {
 
@@ -89,24 +100,80 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
 
         datosGeneralesMapper.createDatosGenerales(datosGenerales)
 
-        if (!expedienteDB.esquemaPago)
-            throw new IllegalArgumentException('Esquema de pago debe ser obligatorio')
+        if (expedienteDB.esquemaPago) {
+            def esquemaDePago = new TDEsquemaPago()
 
-        def esquemaDePago = new TDEsquemaPago()
+            esquemaDePago.with {
+                idTrabajador = trabajador.id
+                bancarizado = expedienteDB?.esquemaPago?.bancarizado ? 1 : 0
+                claveBanco = expedienteDB?.esquemaPago?.cveBanco?.toLong()
+                clabe = expedienteDB?.esquemaPago?.clabe
+                //idDocumento
+                //rfcUsuario
+                //fecha
+            }
 
-        esquemaDePago.with {
-            idTrabajador = trabajador.id
-            bancarizado = expedienteDB?.esquemaPago?.bancarizado ? 1 : 0
-            claveBanco = expedienteDB?.esquemaPago?.cveBanco?.toLong()
-            clabe = expedienteDB?.esquemaPago?.clabe
-            //idDocumento
-            //rfcUsuario
-            //fecha
+            esquemaPagoMapper.createEsquemaPago(esquemaDePago)
         }
 
-        esquemaPagoMapper.createEsquemaPago(esquemaDePago)
+
+        if (expedienteDB.formacionAcademica) {
+
+            def formacionAcademica = null
+
+            if (expedienteDB.formacionAcademica.estudios) {
+                def estudioAcademico
+                expedienteDB.formacionAcademica.estudios.each {
+                    estudioAcademico = it
+                    formacionAcademica = new TDFormacionAcademica()
+
+                    formacionAcademica.with {
+                        idTrabajador = trabajador.id
+                        nivel = estudioAcademico?.nivelMaximoEstudios?.id?.toLong()
+                        institucionEducativa = estudioAcademico.nombreInstitucion
+                        nombreCarrera = estudioAcademico?.carrera?.valor
+                        documento = estudioAcademico?.documento?.id?.toLong()
+                        //rfcUsuario
+                        //fecha =
+                        numeroCedula = estudioAcademico.cedula
+                        anios = estudioAcademico?.anios?.valor?.toLong()
+                        idCarrera = estudioAcademico?.carrera?.id
+                    }
+                    formacionAcademicaMapper.createFormacionAcademica(formacionAcademica)
+                }
+            }
+        }
 
 
-        //Todo temrinar
+        if (expedienteDB.beneficiarios) {
+
+            def dependiente = null
+            if (expedienteDB.beneficiarios.beneficiarios){
+                Beneficiario beneficiarioMongo
+                expedienteDB.beneficiarios.beneficiarios.each {
+                    beneficiarioMongo = it
+                    dependiente = new TDDependientes()
+
+                    dependiente.with {
+
+                        idTrabajador = trabajador.id
+                        curpDependiente = beneficiarioMongo?.curp
+                        nombre = beneficiarioMongo?.nombres
+                        apellidoPaterno = beneficiarioMongo?.primerApellido
+                        apellidoMaterno = beneficiarioMongo?.segundoApellido
+                        fechaNacimiento = beneficiarioMongo?.fechaNacimiento
+                        cveSexo = beneficiarioMongo?.genero?.id
+                        cveParentesco = beneficiarioMongo?.parentesco?.id
+                        cveNivel = beneficiarioMongo?.nivelAcademico?.id
+                        cveGrado = beneficiarioMongo?.grado?.id
+                        //rfcUsuario = beneficiarioMongo.
+                        //fecha
+                    }
+
+                    dependientesMapper.createDependiente(dependiente)
+                }
+            }
+        }
+
     }
 }

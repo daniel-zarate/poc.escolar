@@ -21,5 +21,9 @@ class BusquedaExpediente implements Serializable {
 	String folio
 	
 	String idTrabajador
+
+	Integer init
+
+	Integer offset
 		
 }

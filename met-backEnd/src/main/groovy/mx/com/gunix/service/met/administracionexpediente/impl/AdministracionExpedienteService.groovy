@@ -68,8 +68,10 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
 	}
 	@Override
 	public Expediente getExpediente(String idExpediente) {
-		// TODO Auto-generated method stub
-		return null;
+
+		def expedienteMongo = expedienteRepository.findOne(idExpediente)
+
+		return ExpedienteMapper.mapExpedienteMongoDBToExpediente(expedienteMongo)
 	}
 
 

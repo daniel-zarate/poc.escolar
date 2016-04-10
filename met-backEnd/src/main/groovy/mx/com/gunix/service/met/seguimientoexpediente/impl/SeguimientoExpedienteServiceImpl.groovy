@@ -1,5 +1,10 @@
 package mx.com.gunix.service.met.seguimientoexpediente.impl
 
+import mx.com.gunix.domain.met.seguimientoexpediente.BusquedaExpediente
+import mx.com.gunix.domain.persistence.mongo.model.ExpedienteDB
+import mx.com.gunix.domain.persistence.mongo.repository.custom.ICustomExpedienteRepository
+import mx.com.gunix.service.met.administracionexpediente.util.ExpedienteMapper
+
 import java.util.List;
 
 import javax.annotation.Resource
@@ -21,14 +26,23 @@ class SeguimientoExpedienteServiceImpl implements ISeguimientoExpedienteService{
     @Resource
     ExpedienteRepository expedienteRepository
 
+	@Resource
+	ICustomExpedienteRepository customExpedienteRepository
+
 	@Override
-	public List busquedaExpediente(Expediente expediente) {
-		List expedienteListResult = []
-		
-		//TODO: buscan en mongo haciendo un like expediente
-		//def expedienteMongo = ExpedienteMapper.mapExpedienteToExpedienteMongoDB(expediente)
-		//def expedienteMongoResultList = expedienteRepository.findLike(expedienteMongo,initial,offset)
-		//expedienteMongoResultList.each{ expedienteListResult.add( ExpedienteMapper.mapExpedienteMongoDBToExpediente(it) ) }
+	public List busquedaExpediente(BusquedaExpediente expediente) {
+
+		List<Expediente> expedienteListResult = []
+
+		//Todo: Descomentar cuando se quiera integrar
+		/*List<ExpedienteDB> expedientesMongo = customExpedienteRepository.findExpedienteByCriteria(expediente)
+		if (expedientesMongo){
+			def exp = null
+			expedientesMongo.each {
+				exp = ExpedienteMapper.mapExpedienteMongoDBToExpediente(it)
+				expedienteListResult << exp
+			}
+		}*/
 		
 		//Comentar una vez que se obtengan los datos de Mongo {
 		Expediente e = new Expediente();
@@ -47,12 +61,11 @@ class SeguimientoExpedienteServiceImpl implements ISeguimientoExpedienteService{
 	@Override
 	public Expediente getExpediente(String idExpediente) {
 		
-		//TODO: buscar en mongo por id
-		//def expedienteMongoResult = expedienteRepository.findById(idExpediente)
-		//Expediente expediente = ExpedienteMapper.mapExpedienteMongoDBToExpediente(it)
-		//return expediente 
+		//TODO: descomentar cuando se quiera inetagrar buscar en mongo por id
+		/*def expedienteMongo = expedienteRepository.findOne(idExpediente)
+		return ExpedienteMapper.mapExpedienteMongoDBToExpediente(expedienteMongo);*/
 		
-		//Comentar una vez que se obtengan los datos de Mongo {
+		//Comentar una vez que se obtengan los datos de Mongo
 		Expediente e = new Expediente();
 		e.nombre = "Noe";
 		e.apellidoPaterno = "Albarran"
@@ -92,8 +105,7 @@ class SeguimientoExpedienteServiceImpl implements ISeguimientoExpedienteService{
 		e.dependientesFamiliaresList
 		
 		return e;
-		
-		//}
+
 		
 	}
 
