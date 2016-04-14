@@ -1,4 +1,4 @@
-package mx.com.gunix.ui.springmvc.view.met.seguimientoxpediente;
+package mx.com.gunix.ui.springmvc.view.met.seguimientoexpediente;
 
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream

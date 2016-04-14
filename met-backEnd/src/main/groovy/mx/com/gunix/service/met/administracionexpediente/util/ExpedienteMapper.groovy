@@ -76,13 +76,46 @@ class ExpedienteMapper {
 	 
 	 static Expediente mapExpedienteMongoDBToExpediente(ExpedienteDB expedienteMongo){
 		 def expediente = new Expediente();
-		 expediente.nombre = expedienteMongo.datosPersonales.nombres
-		 expediente.apellidoPaterno = expedienteMongo.datosPersonales.primerApellido
-		 expediente.apellidoMaterno = expedienteMongo.datosPersonales.segundoApellido
-		 expediente.curp = expedienteMongo.datosPersonales.curp
 		 
-		 //TODO: completar
+				 expedienteMongo.datosPersonales.with {
+					 expediente.apellidoPaterno = primerApellido  
+					 expediente.apellidoMaterno = segundoApellido  
+					 expediente.nombre = nombres 
+					 expediente.numSeguroSocial = numeroSeguridadSocial
+					 expediente.curp = curp 
+					 expediente.rfc = rfc 
+					 expediente.fechaNacimiento  = formatter.format(fechaNacimiento)
+					 expediente?.edadTrabajador = edad 
+					 expediente.cveSexo = genero.id
+					 expediente.cveEstadoCivil = estadoCivil
+					 expediente.cveNacionalidad = nacionalidad 
+					 expediente.cvePais = paisNacimiento 
+					 expediente.cveEntidadFederativa  = entidadFederativa
+					 expediente.cveMunicipio = municipiodelegacion
+				 }
 		 
+				 expedienteMongo.datosGenerales.with {
+					 expediente.celular = telefonoCelular 
+					 expediente.email = correoElectronicoPersonal  
+					 domicilio.with {
+						 expediente.calle = calleNumero  
+						 expediente.codPosta =codigoPostal  
+						 expediente?.colonia = colonia 
+						 expediente?.entidad = entidad 
+						 expediente?.municipio = municipio 
+						 expediente.localidad = localidad  
+						 expediente.telefono = telfonoFijo  
+						 expediente.observaciones = observaciones  
+					 }
+				 }
+		 
+				 
+				 expedienteMongo.esquemaPago.with {
+					 expediente.cveBanco = bancarizado     
+					 expediente.cveBanco = cveBanco  
+					 expediente.clabe = clabe   
+				 }
+				 
 		 return expediente
 	 }
 

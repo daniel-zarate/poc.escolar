@@ -35,16 +35,17 @@ class SeguimientoExpedienteServiceImpl implements ISeguimientoExpedienteService{
 		List<Expediente> expedienteListResult = []
 
 		//Todo: Descomentar cuando se quiera integrar
-		/*List<ExpedienteDB> expedientesMongo = customExpedienteRepository.findExpedienteByCriteria(expediente)
+		List<ExpedienteDB> expedientesMongo = customExpedienteRepository.findExpedienteByCriteria(expediente)
 		if (expedientesMongo){
 			def exp = null
 			expedientesMongo.each {
 				exp = ExpedienteMapper.mapExpedienteMongoDBToExpediente(it)
 				expedienteListResult << exp
 			}
-		}*/
+		}
 		
 		//Comentar una vez que se obtengan los datos de Mongo {
+		/*
 		Expediente e = new Expediente();
 		e.nombre = "Noe";
 		e.apellidoPaterno = "Albarran"
@@ -55,6 +56,7 @@ class SeguimientoExpedienteServiceImpl implements ISeguimientoExpedienteService{
 		e.id = "ESTE-ESUN-IDDE-LOSC-HIDO"
 		expedienteListResult.add(e)
 		//}
+		 */
 		
 		return expedienteListResult;
 	}

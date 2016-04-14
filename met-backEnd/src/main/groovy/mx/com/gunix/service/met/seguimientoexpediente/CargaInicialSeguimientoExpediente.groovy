@@ -15,6 +15,7 @@ public class CargaInicialSeguimientoExpediente {
 
 		println "cargaInicialSeguimientoExpediente";
 		
+		//TODO: sacar de catalogo
 		Variable v = new Variable();
 		CatalogoDTO valor1 = new CatalogoDTO([id:1,valor:"En Proceso"]);
 		CatalogoDTO valor2 = new CatalogoDTO([id:2,valor:"Autorizado"]);

@@ -95,7 +95,7 @@ class ExpedienteRepositoryTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     void findExpedientes(){
         def busqueda = new BusquedaExpediente(apellidoPaterno: 'Zárate', apellidoMaterno: 'Altamirano', init: 1,offset: 10)
         def result = customExpedienteRepository.findExpedienteByCriteria(busqueda)

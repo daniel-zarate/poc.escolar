@@ -13,7 +13,7 @@ import javax.annotation.Resource
 
 @RunWith(SpringJUnit4ClassRunner)
 @ContextConfiguration(classes = [PersistenceConfig])
-@Ignore
+//@Ignore
 class TrabajadorMapperTest {
 
     @Resource
@@ -29,9 +29,11 @@ class TrabajadorMapperTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     void insertTrabajadorTest() {
 
+		println "corriendo"
+		
         def trabajadorToInsert = new TDTrabajador()
         trabajadorToInsert.with {
 
