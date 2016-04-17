@@ -45,6 +45,8 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
         if (!expedienteDB.datosPersonales)
             throw new IllegalArgumentException('Datos personales debe ser obligatorio')
 
+        def fechaSistema = new Date()
+
         TDTrabajador trabajador = new TDTrabajador()
 
         trabajador.with {
@@ -62,12 +64,12 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
             //folioActiviti
             numeroSS = expedienteDB.datosPersonales?.numeroSeguridadSocial?.toLong()
             nacionalidad = expedienteDB.datosPersonales?.nacionalidad?.id
-            //status
+            status = expedienteDB.estatusExpediente
             //rfcUsuario
             fecha = new Date()
             claveEntidadFederativa = expedienteDB.datosPersonales?.entidadFederativa?.id
             claveMunicipio = expedienteDB.datosPersonales?.municipiodelegacion?.id
-            //folioSolicitud
+            folioSolicitud = expedienteDB.folioExpediente.toLong()
             //numeroTrabajador
             estadoCivil = expedienteDB.datosPersonales?.estadoCivil?.id
             //foto
@@ -95,7 +97,7 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
             telefonoFijo = expedienteDB?.datosGenerales?.domicilio?.telfonoFijo
             //idDocumento
             //rfcUsuario
-            //fecha
+            fecha = fechaSistema
         }
 
         datosGeneralesMapper.createDatosGenerales(datosGenerales)
@@ -110,7 +112,7 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
                 clabe = expedienteDB?.esquemaPago?.clabe
                 //idDocumento
                 //rfcUsuario
-                //fecha
+                fecha = fechaSistema
             }
 
             esquemaPagoMapper.createEsquemaPago(esquemaDePago)
@@ -167,7 +169,7 @@ class ExpedienteTrabajadorService implements IExpedienteTrabajadorService {
                         cveNivel = beneficiarioMongo?.nivelAcademico?.id
                         cveGrado = beneficiarioMongo?.grado?.id
                         //rfcUsuario = beneficiarioMongo.
-                        //fecha
+                        fecha = fechaSistema
                     }
 
                     dependientesMapper.createDependiente(dependiente)

@@ -16,14 +16,14 @@ class BusquedaExpediente implements Serializable {
 	
     String curp
 	
-	String estatusBusqueda
+	String estatusExpediente
 	
 	String folio
 	
 	String idTrabajador
 
-	Integer init
+	Integer pageNumber // first page is number 0
 
-	Integer offset
+	Integer pageSize // total number of elements in each page
 		
 }

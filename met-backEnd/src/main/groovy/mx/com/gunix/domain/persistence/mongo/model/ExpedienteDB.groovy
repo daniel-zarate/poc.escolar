@@ -1,6 +1,7 @@
 package mx.com.gunix.domain.persistence.mongo.model
 
 import groovy.transform.Canonical
+import mx.com.gunix.domain.persistence.mongo.model.embedded.Catalogo
 import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosGenerales
 import mx.com.gunix.domain.persistence.mongo.model.embedded.DatosPersonales
 import mx.com.gunix.domain.persistence.mongo.model.embedded.EsquemaPago
@@ -18,6 +19,12 @@ class ExpedienteDB implements Serializable{
 
     @Id
     String id
+
+    @Field('estatus_expediente')
+    String estatusExpediente
+
+    @Field('folio_expediente')
+    String folioExpediente
 
     @Field('datos_personales')
     DatosPersonales datosPersonales

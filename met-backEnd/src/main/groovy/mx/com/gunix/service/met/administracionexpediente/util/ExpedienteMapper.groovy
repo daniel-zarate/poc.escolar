@@ -19,6 +19,12 @@ class ExpedienteMapper {
 
         def expedienteMongo = new ExpedienteDB()
 
+         expedienteMongo.with {
+
+             estatusExpediente = expediente?.estatusExpediente
+             folioExpediente = expediente?.folioExpediente
+         }
+
         expedienteMongo.datosPersonales = new DatosPersonales()
         expedienteMongo.datosPersonales.with {
             primerApellido = expediente.apellidoPaterno

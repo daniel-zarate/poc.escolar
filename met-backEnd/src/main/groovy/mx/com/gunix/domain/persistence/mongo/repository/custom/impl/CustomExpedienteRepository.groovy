@@ -28,22 +28,23 @@ class CustomExpedienteRepository implements ICustomExpedienteRepository{
         }
 
         def curp = busquedaExpediente?.curp
-        def estatusExp = busquedaExpediente?.estatusBusqueda
+        def estatusExp = busquedaExpediente?.estatusExpediente
         def nombre = busquedaExpediente?.nombre
         def primerApellido = busquedaExpediente?.apellidoPaterno
         def segundoApedillo = busquedaExpediente?.apellidoMaterno
         def folio = busquedaExpediente?.folio
         //def fecha = busquedaExpediente?.
+
         Criteria criteria = new Criteria()
         if (curp && !curp.isEmpty()){
             Criteria criteriaCurp = new Criteria().where('datosPersonales.curp').regex(curp,'i')
             criteriaList.add(criteriaCurp)
         }
 
-        //Todo: falta esta sección en el expediente de mongo
-        /*if (estatusExp){
-
-        }*/
+        if (estatusExp){
+            Criteria criteriaExpediente = new Criteria().where('estatusExpediente').is(estatusExp)
+            criteriaList.add(criteriaExpediente)
+        }
 
         if (nombre && !nombre.isEmpty()){
             Criteria criteriaNombre = new Criteria().where('datosPersonales.nombre').is(nombre)
@@ -60,15 +61,14 @@ class CustomExpedienteRepository implements ICustomExpedienteRepository{
             criteriaList.add(criteriaSApellido)
         }
 
-        //Todo: falta esta sección en el expediente de mongo
-        /*if (folio && !folio.isEmpty()){
-            Criteria criteriaFolio = new Criteria().where('').is(folio)
+        if (folio && !folio.isEmpty()){
+            Criteria criteriaFolio = new Criteria().where('folioExpediente').is(folio)
             criteriaList.add(criteriaFolio)
-        }*/
+        }
 
         Query query = new Query()
         query.addCriteria(new Criteria().andOperator(criteriaList.toArray(new Criteria[criteriaList.size()])))
-        //query.with(new PageRequest(busquedaExpediente.init,busquedaExpediente.offset))
+        query.with(new PageRequest(busquedaExpediente.pageNumber,busquedaExpediente.pageSize))
 
         def result = mongoTemplate.find(query,ExpedienteDB)
 
