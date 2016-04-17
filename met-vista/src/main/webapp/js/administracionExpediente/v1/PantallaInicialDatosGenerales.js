@@ -14,6 +14,8 @@
 
 jQuery(document).ready(function() {
 	
+	
+	
 	//Para cargar el archivo
 //	jQuery("#idComprobanteDom").on("change",function(){
 //		uploadSpecificMetFile(this.id,function(map){
@@ -52,7 +54,6 @@ jQuery(document).ready(function() {
 		jQuery("#entidadCombo").prop("required", true);
 		jQuery("#municipioCombo").prop("required", true);
 	}	
-
 
 	
 	jQuery("#codPostal").trigger("keyup");
@@ -101,6 +102,8 @@ jQuery(document).ready(function() {
 				jQuery("#observaciones").attr("disabled","disabled")
 				jQuery("#cargaArchivoDatosGenerales").hide();
 			}
+	
+	console.log("listo-PantallaInicialDatosGenerales.js-4");
 	
 });
 
@@ -387,13 +390,39 @@ function obtieneNombre(nombreArchivo, separador){
 }
 
 
+jQuery("#codPostal").bind('keyup',function(){
+	
+	console.log( "keyup-1");
+	
+	if(jQuery("#codPostal").attr("data-invalid") == null && jQuery("#codPostal").val().length==5){
+		var cpExistente = this.value
+		if(cpExistente!=null && cpExistente!=undefined){
+			var json = {codigoPostal:cpExistente};		
+			$.ajax({
+				  url: '/met-vista/expedienteRest/busquedaCP',
+				  data: json,
+				  success : function( data ) {
+					  $.each(data.coloniaList, function(index, value) {   
+						     $('#coloniaCombo')
+						         .append($("<option></option>")
+						                    .attr("value",value.id)
+						                    .text(value.descripcion)); 
+						}); 
+					  
+					  $('#entidadCombo')
+				         .append($("<option></option>")
+				                    .attr("value",data.entidad.id)
+				                    .text(data.entidad.descripcion));
+					  
+					  $('#municipioCombo')
+				         .append($("<option></option>")
+				                    .attr("value",data.municipio.id)
+				                    .text(data.municipio.descripcion));
+				  }
+				});
+				
+		}
+	}
+});
 
-//jQuery("#codPostal").bind('keyup',function(){
-//	var cpExistente = this.value
-//	if(cpExistente!=null && cpExistente!=undefined){
-//		var json = {data:{uri:"/services/PRX_SD_ColoniaService/getColoniaPorCP",form:{codigoPostal: cpExistente , codigoPostal1: cpExistente}}};		
-//		var request = new RestClientURI('POST',JSON.stringify(json), exitoCodigoPostal, function(){}); 
-//		request.call();
-//
-//	}
-//});
+

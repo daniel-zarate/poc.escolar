@@ -12,13 +12,16 @@ import mx.com.gunix.domain.persistence.relational.dbmappers.TrabajadorMapper
 import mx.com.gunix.service.met.administracionexpediente.IAdministracionExpedienteService
 import mx.com.gunix.service.met.administracionexpediente.util.ExpedienteMapper
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 import javax.annotation.Resource
 import java.text.SimpleDateFormat
-import java.util.List;
+import java.util.List
+import java.util.Map;;
 
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 class AdministracionExpedienteService implements IAdministracionExpedienteService{
 
 
@@ -72,6 +75,28 @@ class AdministracionExpedienteService implements IAdministracionExpedienteServic
 		def expedienteMongo = expedienteRepository.findOne(idExpediente)
 
 		return ExpedienteMapper.mapExpedienteMongoDBToExpediente(expedienteMongo)
+	}
+	
+	@Override
+	public Map busquedaCP(String codigoPostal){
+		
+		//TODO: look in bd for catalogos
+		// getColonias(codigoPostal)
+		// getMunicipio( from colonias)
+		// getEntidad( from municipio )
+		
+		
+		def map = [
+			"entidad":["id":9,"descripcion":"Distrito Federal"],
+			"municipio":["id":2,"descripcion":"Venustiano Carranza"],
+			"coloniaList":[
+				["id":1,"descripcion":"Centro"],
+				["id":2,"descripcion":"Morelos"]
+			]
+		]
+		
+		return map
+		
 	}
 
 
