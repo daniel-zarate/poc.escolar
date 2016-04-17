@@ -36,7 +36,7 @@ class CustomExpedienteRepository implements ICustomExpedienteRepository{
         //def fecha = busquedaExpediente?.
         Criteria criteria = new Criteria()
         if (curp && !curp.isEmpty()){
-            Criteria criteriaCurp = new Criteria().where('datosPersonales.curp').is(curp)
+            Criteria criteriaCurp = new Criteria().where('datosPersonales.curp').regex(curp,'i')
             criteriaList.add(criteriaCurp)
         }
 

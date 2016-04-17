@@ -102,4 +102,12 @@ class ExpedienteRepositoryTest {
 
         assert result && result.size() == 2
     }
+
+    @Test
+    void findExpedientesByCurp(){
+        def busqueda = new BusquedaExpediente(curp: 'xcaa', init: 1,offset: 10)
+        def result = customExpedienteRepository.findExpedienteByCriteria(busqueda)
+
+        assert result && result.size() == 1
+    }
 }
